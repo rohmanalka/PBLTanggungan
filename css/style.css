@@ -46,3 +46,105 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* STYLE CSS */
+body {
+    background: url(img/bg2.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 960px;
+    height: 480;
+    margin: 80px auto;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: relative;
+    border-radius: 5px;
+}
+
+.header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    margin: 27px;
+    position: absolute;
+}
+
+.login-box {
+    width: 460px;
+    height: 310px;
+    background-color: rgba(255, 255, 255, 0.4);
+    position: absolute;
+    margin: 140px 30px;
+    border-radius: 5px;
+}
+
+.login-box .form {
+    position: absolute;
+    width: 350px;
+    height: 240px;
+    margin: 30px 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-log {
+    font-size: 30px;
+}
+
+.inpt-grp {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.forgot {
+    display: block;
+    margin-top: 20px;
+    font-size: 14;
+    color: #555;
+    text-decoration: none;
+}
+
+.logo img {
+    height: 80px;
+    width: 200px;
+    position: absolute;
+    top: 20;
+    left: 740;
+}
+
+.icon img {
+    height: 350px;
+    width: 350px;
+    position: absolute;
+    top: 120;
+    left: 580;
+}
