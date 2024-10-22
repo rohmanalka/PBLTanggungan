@@ -1,3 +1,4 @@
+package java;
 public class Admin extends User {
     public String nama;
 

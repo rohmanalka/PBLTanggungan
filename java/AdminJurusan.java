@@ -1,3 +1,4 @@
+package java;
 public class AdminJurusan extends Admin {
     public AdminJurusan(String id, String password, String nama) {
         super(id, password, nama);

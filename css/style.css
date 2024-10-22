@@ -5,7 +5,7 @@
 }
 
 body {
-    background: url('i') no-repeat center center fixed;
+    background: url('/img/bg2.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
 }
