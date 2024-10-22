@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Informasi Bebas Tanggungan</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <div class="login-container">
-        <div class="login-box">
-            <h1>Sistem Informasi Bebas Tanggungan</h1>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="container">
             <form action="/php/login.php" method="post">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                <div class="header">3
+                    Sistem Informasi <br> Bebas Tanggungan
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                <div class="login-box">
+                    <div class="form">
+                        <div class="text-log">Login</div><br>
+                        <div class="input-grp">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="user" required>
+                        </div>
+                        <div class="input-grp">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="user" required>
+                        </div>
+                        <button type="submit">Sign In</button>
+                        <br>
+                        <a href="#" class="forgot">Forgot Password?</a>
+                    </div>
                 </div>
-                <button type="submit">Sign In</button>
-                <a href="#" class="forgot-password">Forgot password?</a>
+                <div class="logo">
+                    <img src="img/jti-polinema-logo-min.png">
+                </div>
+                <div class="icon">
+                    <img src="img/p.png">
+                </div>
             </form>
         </div>
-    </div>
-</body>
+    </body>
 </html>
