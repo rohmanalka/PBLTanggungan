@@ -1,105 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Ambil role dari session
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
-        .container {
-            padding-top: 20px;
-        }
+// Fallback jika role tidak ada
+if (!$role) {
+    echo "<p>Role tidak dikenali. Harap login ulang.</p>";
+    exit;
+}
 
-        .sidebar {
-            background-color: #f8f9fa;
-            padding: 20px;
-            height: 100vh;
-            border-right: 1px solid #ced4da;
-        }
-
-        .sidebar h5 {
-            margin-top: 0;
-        }
-
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .sidebar li {
-            margin-bottom: 10px;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #333;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #e9ecef;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-
-        .card-header {
-            background-color: #f8f9fa;
-            border-bottom: none;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="d-flex">
-        <div class="sidebar">
-            <h5>Menu</h5>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Logout</a></li>
+$current_page = basename($_SERVER['SCRIPT_NAME']);
+?>
+<!-- Sidebar -->
+<div class="sidebar" data-background-color="dark">
+    <div class="sidebar-logo">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark2">
+            <a href="index.html" class="logo">
+                <img
+                    src="../../../assets/img/brand.png"
+                    alt="navbar brand"
+                    class="navbar-brand"
+                    height="50" 
+                />
+            </a>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                    <i class="gg-menu-left"></i>
+                </button>
+            </div>
+            <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+            </button>
+        </div>
+        <!-- End Logo Header -->
+    </div>
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">MENU</h4>
+                </li>
+                <?php if ($role === 'mahasiswa') { ?>
+                    <li class="nav-item <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
+                        <a href="dashboard.php">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'cekTanggungan.php' ? 'active' : '' ?>">
+                        <a href="cekTanggungan.php">
+                        <i class="fas fa-folder-open"></i>
+                        <p>Cek Tanggungan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'uploadBerkas.php' ? 'active' : '' ?>">
+                        <a href="cekTanggungan.php">
+                        <i class="fas fa-file-upload"></i>
+                        <p>Upload Berkas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'cetakBebasTanggungan.php' ? 'active' : '' ?>">
+                        <a href="cekTanggungan.php">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        <p>Cetak Bebas Tanggungan</p>
+                        </a>
+                    </li>
+                <?php } elseif ($role === 'admin') { ?>
+                    <li class="nav-item <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
+                        <a href="dashboard.php">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'cekTanggungan.php' ? 'active' : '' ?>">
+                        <a href="cekTanggungan.php">
+                        <i class="fas fa-folder-open"></i>
+                        <p>Cek Tanggungan</p>
+                        </a>
+                    </li>
+                <?php } ?>
+                
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">OTHERS</h4>
+                </li>
+                <li class="nav-item">
+                    <a
+                        data-bs-toggle="collapse"
+                        href="#dashboard"
+                        class="collapsed"
+                        aria-expanded="false">
+                        <i class="fas fa-cog"></i>
+                        <p>Setings</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        data-bs-toggle="collapse"
+                        href="#dashboard"
+                        class="collapsed"
+                        aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                        <p>Account</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                        <a href="../../../controllers/logout.php">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <p>Log Out</p>
+                    </a>
+                </li>
             </ul>
         </div>
-        <div class="content flex-grow-1">
-            <div class="container">
-                <h1>Dashboard</h1>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">Card Title 1</div>
-                            <div class="card-body">
-                                <p>This is some content for the first card.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">Card Title 2</div>
-                            <div class="card-body">
-                                <p>This is some content for the second card.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+<!-- End Sidebar -->

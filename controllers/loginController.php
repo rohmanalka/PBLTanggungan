@@ -27,9 +27,11 @@ if ($user) {
 
         // Sesuai role
         if ($user['role'] === 'admin') {
-            header("Location: ../views/pages/admin.php");
+            $_SESSION['role'] = 'admin';
+            header("Location: ../views/pages/admin/dashboard.php");
         } elseif ($user['role'] === 'mahasiswa') {
-            header("Location: ../views/pages/mahasiswa.php");
+            $_SESSION['role'] = 'mahasiswa';
+            header("Location: ../views/pages/mahasiswa/dashboard.php");
         }
     } else echo "Password salah!";
 } else {

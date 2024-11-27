@@ -1,0 +1,143 @@
+<?php
+session_start();
+if (!isset($_SESSION['role'])) {
+  header("Location: ../index.php");
+  exit();
+}
+
+// Redirect mahasiswa jika mencoba mengakses halaman admin
+if ($_SESSION['role'] === 'mahasiswa') {
+  header("Location: ../mahasiswa/dashboard.php");
+  exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+  <!-- css -->
+  <?php include('css.php') ?>
+  <!-- css -->
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="main-panel">
+      <!-- sidebar -->
+      <?php include('../../layouts/sidebar.php') ?>
+      <!-- sidebar -->
+
+      <!-- navbar -->
+      <?php include('../../layouts/header.php') ?>
+      <!-- navbar -->
+
+      <!-- <main> -->
+      <div class="container">
+        <div class="page-inner">
+          <div
+            class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+              <h2 class="fw-bold mb-3">Dashboard</h2>
+              <h6 class="op-7 mb-2">Admin Bebas Tanggungan</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-round">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-icon">
+                      <div
+                        class="icon-big text-center icon-primary bubble-shadow-small">
+                        <i class="fas fa-folder-open"></i>
+                      </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                      <div class="numbers">
+                        <p class="card-category">Total Tanggungan</p>
+                        <h4 class="card-title">6</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-round">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-icon">
+                      <div
+                        class="icon-big text-center icon-info bubble-shadow-small">
+                        <i class="fas fa-check"></i>
+                      </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                      <div class="numbers">
+                        <p class="card-category">Selesai</p>
+                        <h4 class="card-title">4</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-round">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-icon">
+                      <div
+                        class="icon-big text-center icon-success bubble-shadow-small">
+                        <i class="fas fa-exclamation"></i>
+                      </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                      <div class="numbers">
+                        <p class="card-category">Belum Terpenuhi</p>
+                        <h4 class="card-title">2</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-round">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-icon">
+                      <div
+                        class="icon-big text-center icon-secondary bubble-shadow-small">
+                        <i class="fas fa-pen"></i>
+                      </div>
+                    </div>
+                    <div class="col col-stats ms-3 ms-sm-0">
+                      <div class="numbers">
+                        <p class="card-category">Status</p>
+                        <h4 class="card-title">Belum</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <main> -->
+
+      <!-- <footer> -->
+      <?php include('../../layouts/footer.php') ?>
+      <!-- <footer> -->
+    </div>
+  </div>
+  <!-- js -->
+  <?php include('js.php') ?>
+  <!-- js -->
+</body>
+
+</html>
