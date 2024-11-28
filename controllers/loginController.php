@@ -24,6 +24,7 @@ if ($user) {
         // session berdasarkan role
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['id_user'] = $user['id_user'];
 
         // Sesuai role
         if ($user['role'] === 'admin') {

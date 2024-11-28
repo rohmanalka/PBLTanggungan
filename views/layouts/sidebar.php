@@ -63,13 +63,13 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'uploadBerkas.php' ? 'active' : '' ?>">
-                        <a href="cekTanggungan.php">
+                        <a href="uploadBerkas.php">
                         <i class="fas fa-file-upload"></i>
                         <p>Upload Berkas</p>
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'cetakBebasTanggungan.php' ? 'active' : '' ?>">
-                        <a href="cekTanggungan.php">
+                        <a href="cetakBebasTanggungan.php">
                         <i class="fas fa-cloud-download-alt"></i>
                         <p>Cetak Bebas Tanggungan</p>
                         </a>

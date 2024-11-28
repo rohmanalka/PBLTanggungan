@@ -1,17 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['role'])) {
-  header("Location: ../index.php");
-  exit();
-}
-
-// Redirect admin jika mencoba mengakses halaman mahasiswa
-if ($_SESSION['role'] === 'admin') {
-  header("Location: ../admin/dashboard.php");
-  exit();
-}
+include '../../../config/connection.php';
+include '../../../config/getData.php';
+include '../../../models/cekModel.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,91 +25,98 @@ if ($_SESSION['role'] === 'admin') {
       <?php include('../../layouts/header.php') ?>
       <!-- navbar -->
 
-      <!-- <main> -->
       <div class="container">
         <div class="page-inner">
-          <div
-            class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+          <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
               <h2 class="fw-bold mb-3">Dashboard</h2>
-              <h6 class="op-7 mb-2">2341760055 / Muhammad Rohman Al Kautsar</h6>
+              <h6 class="op-7 mb-2"><?php echo $nim ?> / <?php echo $nama ?></h6>
             </div>
           </div>
+
+          <!-- Statistik Card -->
           <div class="row">
             <div class="col-sm-6 col-md-3">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-icon">
-                      <div
-                        class="icon-big text-center icon-primary bubble-shadow-small">
+                      <div class="icon-big text-center icon-primary bubble-shadow-small">
                         <i class="fas fa-folder-open"></i>
                       </div>
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Total Tanggungan</p>
-                        <h4 class="card-title">6</h4>
+                        <h4 class="card-title"><?= $tanggunganCount['total_tanggungan']; ?></h4>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-icon">
-                      <div
-                        class="icon-big text-center icon-info bubble-shadow-small">
+                      <div class="icon-big text-center icon-success bubble-shadow-small">
                         <i class="fas fa-check"></i>
                       </div>
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
-                        <p class="card-category">Selesai</p>
-                        <h4 class="card-title">4</h4>
+                        <p class="card-category">Terpenuhi</p>
+                        <h4 class="card-title"><?= $tanggunganCount['terpenuhi']; ?></h4>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-icon">
-                      <div
-                        class="icon-big text-center icon-success bubble-shadow-small">
+                      <div class="icon-big text-center icon-warning bubble-shadow-small">
                         <i class="fas fa-exclamation"></i>
                       </div>
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Belum Terpenuhi</p>
-                        <h4 class="card-title">2</h4>
+                        <h4 class="card-title"><?= $tanggunganCount['belum_terpenuhi']; ?></h4>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-sm-6 col-md-3">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-icon">
-                      <div
-                        class="icon-big text-center icon-secondary bubble-shadow-small">
+                      <div class="icon-big text-center icon-secondary bubble-shadow-small">
                         <i class="fas fa-pen"></i>
                       </div>
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Status</p>
-                        <h4 class="card-title">Belum</h4>
+                        <h4 class="card-title">
+                          <?php
+                          if ($tanggunganCount['belum_terpenuhi'] > 0) {
+                            echo 'Belum';
+                          } else {
+                            echo 'Terpenuhi';
+                          }
+                          ?>
+                        </h4>
                       </div>
                     </div>
                   </div>
@@ -126,6 +124,8 @@ if ($_SESSION['role'] === 'admin') {
               </div>
             </div>
           </div>
+
+          <!-- Table with Tanggungan Details -->
           <div class="col-md-12">
             <div class="card card-round">
               <div class="card-header">
@@ -135,7 +135,6 @@ if ($_SESSION['role'] === 'admin') {
               </div>
               <div class="card-body p-0">
                 <div class="table-responsive">
-                  <!-- Projects table -->
                   <table class="table align-items-center mb-0">
                     <thead class="thead-light">
                       <tr>
@@ -146,46 +145,21 @@ if ($_SESSION['role'] === 'admin') {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th>1</th>
-                        <td>Bebas Kompensasi</td>
-                        <td>Surat Kompensasi Presensi</td>
-                        <td>
-                          <span class="badge badge-success">Completed</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>2</th>
-                        <td>Laporan Magang</td>
-                        <td>File Laporan Magang</td>
-                        <td>
-                          <span class="badge badge-success">Completed</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>3</th>
-                        <td>Laporam Skripsi</td>
-                        <td>File Laporan Skripsi</td>
-                        <td>
-                          <span class="badge badge-success">Completed</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>4</th>
-                        <td>TOEIC</td>
-                        <td>Sertifikat TOEIC minimal 350</td>
-                        <td>
-                          <span class="badge badge-success">Completed</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th>5</th>
-                        <td>Tanggungan Perpustakaan</td>
-                        <td>Surat Bebas Tanggungan Perpus</td>
-                        <td>
-                          <span class="badge badge-success">Completed</span>
-                        </td>
-                      </tr>
+                      <?php $no = 1;
+                      foreach ($tanggunganData as $data): ?>
+                        <tr>
+                          <th><?= $no++; ?></th>
+                          <td><?= htmlspecialchars($data['jenis_tanggungan']); ?></td>
+                          <td><?= htmlspecialchars($data['keterangan']); ?></td>
+                          <td>
+                            <?php if ($data['status'] === 'terpenuhi'): ?>
+                              <span class="badge badge-success">Terpenuhi</span>
+                            <?php else: ?>
+                              <span class="badge badge-warning">Belum Terpenuhi</span>
+                            <?php endif; ?>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>
@@ -194,16 +168,12 @@ if ($_SESSION['role'] === 'admin') {
           </div>
         </div>
       </div>
-      <!-- <main> -->
 
-      <!-- <footer> -->
       <?php include('../../layouts/footer.php') ?>
-      <!-- <footer> -->
     </div>
   </div>
-  <!-- js -->
+
   <?php include('js.php') ?>
-  <!-- js -->
 </body>
 
 </html>
