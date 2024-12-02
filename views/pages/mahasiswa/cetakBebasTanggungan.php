@@ -1,8 +1,3 @@
-<?php
-include '../../../config/connection.php';
-include '../../../config/getData.php';
-include '../../../models/cekModel.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,47 +20,42 @@ include '../../../models/cekModel.php';
       <?php include('../../layouts/header.php') ?>
       <!-- navbar -->
 
+      <!-- <main> -->
       <div class="container">
         <div class="page-inner">
           <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
-              <h2 class="fw-bold mb-3">Dashboard</h2>
-              <h6 class="op-7 mb-2"><?php echo $nim ?> / <?php echo $nama ?></h6>
+              <h2 class="fw-bold mb-3">Cetak Bebas Tanggungan</h2>
+              <h6 class="op-7 mb-2">2341760055 / Muhammad Rohman Al Kautsar</h6>
             </div>
           </div>
-
-          <!-- Tabel -->
-          <div class="col-md-12">
-            <div class="card card-round">
-              <div class="card-header">
-                <div class="card-head-row card-tools-still-right">
-                  <div class="card-title">Biodata Mahasiswa</div>
-                </div>
-              </div>
-              <div class="card-body p-0">
-              <div class="row row-demo-grid" style="justify-content: center; margin-top: 30px;">
-                  <div class="col-6 col-md-3">
-                    <div class="card">
-                      <div class="card-body" style="background-color: blanchedalmond;"><code>Nama</code></div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="card">
-                      <div class="card-body"><code>Lutfi mahardika</code></div>
-                    </div>
-                  </div>
-                </div>
+          <div>
+            <div class="card-header">
+              <div class="card-head-row card-tools-still-right">
+                <button class="button disabled">Request Bebas Tanggungan</button>  
+                <p class="status"><strong>Status:</strong> <span style="color: red;">request</span></p>
               </div>
             </div>
-          </div>
+            <div class="card-header">
+              <div class="card-head-row card-tools-still-right">
+                <button class="button disabled">Cetak Bebas Tanggungan</button>  
+                <p> <span style="color: red;">*Tanggungan anda belum terpenuhi<br></span>
+                Silahkan memenuhi tanggungan sebelum mencetak surat bebas tanggungan</p>
+              </div>
+            </div>
+          </div>  
         </div>
       </div>
+      <!-- <main> -->
 
+      <!-- <footer> -->
       <?php include('../../layouts/footer.php') ?>
+      <!-- <footer> -->
     </div>
   </div>
-
+  <!-- js -->
   <?php include('js.php') ?>
+  <!-- js -->
 </body>
 
 </html>
