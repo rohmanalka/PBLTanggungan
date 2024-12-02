@@ -108,7 +108,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                 <li class="nav-item">
                     <a
                         data-bs-toggle="collapse"
-                        href="#dashboard"
+                        href="account.php"
                         class="collapsed"
                         aria-expanded="false">
                         <i class="fas fa-user"></i>
