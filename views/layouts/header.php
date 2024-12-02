@@ -39,36 +39,34 @@
                 <li class="nav-item topbar-icon dropdown hidden-caret">
                     <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell"></i>
-                        <span class="notification">2</span>
+                        <span class="notification">
+                            <?= $tanggunganCount['belum_terpenuhi'] > 0 ? $tanggunganCount['belum_terpenuhi'] : ""; ?>
+                        </span>
                     </a>
                     <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-                        <li>
-                            <div class="dropdown-title">You have 2 new notifications</div>
-                        </li>
-                        <li>
-                            <div class="notif-scroll scrollbar-outer">
-                                <div class="notif-center">
-                                    <a href="#">
-                                        <div class="notif-icon notif-primary">
-                                            <i class="fa fa-user-plus"></i>
-                                        </div>
-                                        <div class="notif-content">
-                                            <span class="block">New user registered</span>
-                                            <span class="time">5 minutes ago</span>
-                                        </div>
-                                    </a>
-                                    <a href="#">
-                                        <div class="notif-icon notif-success">
-                                            <i class="fa fa-comment"></i>
-                                        </div>
-                                        <div class="notif-content">
-                                            <span class="block">Rahmad commented on Admin</span>
-                                            <span class="time">12 minutes ago</span>
-                                        </div>
-                                    </a>
+                        <?php if (!$allFulfilled): ?>
+                            <li>
+                                <div class="dropdown-title">Anda memiliki <?= $tanggunganCount['belum_terpenuhi'] ?> tanggungan yang belum terpenuhi.</div>
+                            </li>
+                            <li>
+                                <div class="notif-scroll scrollbar-outer">
+                                    <div class="notif-center">
+                                        <a href="cekTanggungan.php">
+                                            <div class="notif-icon notif-warning">
+                                                <i class="fa fa-exclamation-circle"></i>
+                                            </div>
+                                            <div class="notif-content">
+                                                <span class="block">Selesaikan tanggungan Anda segera.</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        <?php else: ?>
+                            <li>
+                                <div class="dropdown-title">Semua tanggungan sudah terpenuhi. Selamat!</div>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </li>
                 <li class="nav-item topbar-user dropdown hidden-caret">
@@ -106,17 +104,17 @@
 
 <!-- JavaScript to display the current date -->
 <script>
-  function formatDate(date) {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
-    const day = days[date.getDay()];
-    const month = months[date.getMonth()];
-    const dayOfMonth = date.getDate();
-    const year = date.getFullYear();
+    function formatDate(date) {
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    return `${day}, ${month} ${dayOfMonth}, ${year}`;
-  }
+        const day = days[date.getDay()];
+        const month = months[date.getMonth()];
+        const dayOfMonth = date.getDate();
+        const year = date.getFullYear();
 
-  document.getElementById('currentDate').textContent = formatDate(new Date());
+        return `${day}, ${month} ${dayOfMonth}, ${year}`;
+    }
+
+    document.getElementById('currentDate').textContent = formatDate(new Date());
 </script>

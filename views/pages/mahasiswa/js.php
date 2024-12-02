@@ -1,3 +1,28 @@
+<script>
+  document.querySelector('form').addEventListener('submit', function(event) {
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
+
+    if (file) {
+      // Periksa tipe file
+      var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
+      if (!allowedTypes.includes(file.type)) {
+        alert("Sorry, only JPG, JPEG, PNG, GIF, and PDF files are allowed.");
+        event.preventDefault();  // Menghentikan form submission
+        return;
+      }
+
+      // Periksa ukuran file
+      var maxSize = 5 * 1024 * 1024;  // 5MB
+      if (file.size > maxSize) {
+        alert("Sorry, the file is too large. Maximum allowed size is 5MB.");
+        event.preventDefault();
+        return;
+      }
+    }
+  });
+</script>
+
 <!-- Onclick menu -->
 <script>
     // Ambil semua elemen dengan kelas 'nav-item'
