@@ -2,8 +2,9 @@ CREATE TABLE Users (
     id_user INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     username VARCHAR(30) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NULL, 
     role VARCHAR(30) CHECK (role IN ('admin', 'mahasiswa')) 
-)
+);
 
 CREATE TABLE Admin (
     id_admin INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
