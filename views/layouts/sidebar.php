@@ -98,17 +98,29 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item <?= $current_page == 'verify.php' ? 'active' : '' ?>">
-                        <a href="verify.php">
+                    <li class="nav-item <?= $current_page == 'verify.php' ? 'active' : '' ?> dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="fas fa-folder-open"></i>
                             <p>Verifikasi Tanggungan</p>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="verify.php?filter=terpenuhi">Terpenuhi</a></li>
+                            <li><a class="dropdown-item" href="verify.php?filter=belum terpenuhi">Belum Terpenuhi</a></li>
+                            <li><a class="dropdown-item" href="verify.php">Semua</a></li>
+                        </ul>
                     </li>
+
                     <li class="nav-item <?= $current_page == 'uploadTemplate.php' ? 'active' : '' ?>">
                         <a href="uploadTemplate.php">
                             <i class="fas fa-folder-open"></i>
                             <p>Upload Template Surat</p>
                         </a>
+                    </li>
+                    <li class="nav-section">
+                        <span class="sidebar-mini-icon">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </span>
+                        <h4 class="text-section">OTHERS</h4>
                     </li>
                 <?php } ?>
                 <li class="nav-item">

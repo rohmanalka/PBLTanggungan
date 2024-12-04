@@ -10,20 +10,33 @@ body {
     background-size: cover;
 }
 
+.title {
+    margin-top: 20px;
+}
+
+.keterangan {
+    text-align: justify;
+    margin-top: 20px;
+}
+
 .container {
     display: flex;
     justify-content: space-around;
-    background-color: rgba(255, 255, 255, 50%);
-    /* text-align: center; */
+    background-color: rgba(255, 255, 255, 80%);
     border-radius: 30px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 5px 10px #005EBC;
+    box-shadow: 8px 5px #005EBC;
+}
+
+.alert {
+    text-align: center;
 }
 
 .col-md-6 {
+    text-align: center;
     justify-content: center;
     align-items: center;
 }

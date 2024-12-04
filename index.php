@@ -33,8 +33,8 @@ if (isset($_GET['error'])) {
     <div class="container" style="width: 800px; height: 450px; padding: 20px;">
         <div class="row">
             <div class="col-md-6 d-flex flex-column" style="border-right: 1px solid black;">
-                <h2>Sistem Informasi<br>Bebas Tanggungan</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin turpis ligula, placerat accumsan mi luctus vitae. Morbi semper id metus et vulputate. Pellentesque molestie vehicula magna, in vehicula felis ultricies at. Nullam est nunc, pharetra nec sollicitudin non, aliquet a velit. Morbi consectetur, ex eget iaculis ultrices, orci felis sagittis magna, nec pretium tortor tortor at odio. Sed ex turpis, imperdiet eget condimentum eget, laoreet ut eros. Sed lacinia tristique ornare. Phasellus efficitur, eros nec consequat pellentesque, est nibh semper.</p>
+                <h2 class="title">Sistem Informasi<br>Bebas Tanggungan</h2>
+                <p class="keterangan">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin turpis ligula, placerat accumsan mi luctus vitae. Morbi semper id metus et vulputate. Pellentesque molestie vehicula magna, in vehicula felis ultricies at. Nullam est nunc, pharetra nec sollicitudin non, aliquet a velit. Morbi consectetur, ex eget iaculis ultrices, orci felis sagittis magna, nec pretium tortor tortor at odio. Sed ex turpis, imperdiet eget condimentum eget, laoreet ut eros. Sed lacinia tristique ornare. Phasellus efficitur, eros nec consequat pellentesque, est nibh semper.</p>
             </div>
             <div class="col-md-6 d-flex flex-column" style="border-left: 1px solid black;">
                 <img src="assets/img/brand.png" alt="SIMASBETA Logo" width="200">

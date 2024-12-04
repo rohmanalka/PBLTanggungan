@@ -41,21 +41,14 @@ include '../../../models/MahasiswaModel.php';
                 <div class="card-head-row card-tools-still-right">
                   <div class="card-title">Berikut Tanggungan yang harus dipenuhi</div>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-black btn-border btn-round btn-sm me-2" style="width: 150px;">
-                      <span class="btn-label">
-                        <i class="fa fa-pencil"></i>
-                      </span>
-                      Search...
-                    </a>
                     <div class="btn-group dropdown" style="width: 150px;">
                       <button class="btn btn-black btn-border dropdown-toggle btn-round btn-sm me-2" type="button" data-bs-toggle="dropdown">
-                        Filter..
+                        Sort By
                       </button>
                       <ul class="dropdown-menu" role="menu">
-                        <li>
-                          <a class="dropdown-item" href="#">Terpenuhi</a>
-                          <a class="dropdown-item" href="#">Belum Terpenuhi</a>
-                        </li>
+                        <li><a class="dropdown-item" href="?filter=terpenuhi">Terpenuhi</a></li>
+                        <li><a class="dropdown-item" href="?filter=belum terpenuhi">Belum Terpenuhi</a></li>
+                        <li><a class="dropdown-item" href="?">Semua</a></li>
                       </ul>
                     </div>
                   </div>
