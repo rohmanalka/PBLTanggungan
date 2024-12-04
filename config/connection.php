@@ -1,5 +1,5 @@
 <?php
-$servername = "DESKTOP-73QVOBT";
+$servername = "LAPTOP-I1TEAASG";
 $database = "DBSiBeta";
 $username = "sa";
 $password = "BebasTanggungan";
