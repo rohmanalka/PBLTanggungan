@@ -99,17 +99,33 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'verify.php' ? 'active' : '' ?> dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#verifikasiSubmenu" aria-expanded="false">
                             <i class="fas fa-folder-open"></i>
                             <p>Verifikasi Tanggungan</p>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="verify.php?filter=terpenuhi">Terpenuhi</a></li>
-                            <li><a class="dropdown-item" href="verify.php?filter=belum terpenuhi">Belum Terpenuhi</a></li>
-                            <li><a class="dropdown-item" href="verify.php">Semua</a></li>
-                        </ul>
+                        <div id="verifikasiSubmenu" class="collapse <?= $current_page == 'verify.php' ? 'show' : '' ?>">
+                            <ul class="nav flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'verify.php?filter=terpenuhi' ? 'active' : '' ?>" href="verify.php?filter=terpenuhi">Surat Bebas Kompensasi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'verify.php?filter=belum terpenuhi' ? 'active' : '' ?>" href="verify.php?filter=belum terpenuhi">Surat Laporan Magang</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat Serah Terima Tugas Akhir</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat TOIEC</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat Perpustakaan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat Bebas UKT</a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-
                     <li class="nav-item <?= $current_page == 'uploadTemplate.php' ? 'active' : '' ?>">
                         <a href="uploadTemplate.php">
                             <i class="fas fa-folder-open"></i>
