@@ -98,34 +98,32 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item <?= $current_page == 'verify.php' ? 'active' : '' ?> dropdown">
+                    <li class="nav-item <?= in_array($current_page, ['berkasPerpus.php', 'berkasJurusan.php', 'berkasAkademik.php']) ? 'active' : '' ?> dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#verifikasiSubmenu" aria-expanded="false">
                             <i class="fas fa-folder-open"></i>
                             <p>Verifikasi Tanggungan</p>
                         </a>
-                        <div id="verifikasiSubmenu" class="collapse <?= $current_page == 'verify.php' ? 'show' : '' ?>">
+                        <div id="verifikasiSubmenu" class="collapse <?= in_array($current_page, ['berkasPerpus.php', 'berkasJurusan.php', 'berkasAkademik.php']) ? 'show' : '' ?>">
                             <ul class="nav flex-column ms-3">
                                 <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'verify.php?filter=terpenuhi' ? 'active' : '' ?>" href="verify.php?filter=terpenuhi">Surat Bebas Kompensasi</a>
+                                    <a class="nav-link <?= $current_page == 'berkasPerpus.php' ? 'active' : '' ?>" href="berkasPerpus.php">
+                                        Berkas Perpustakaan
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'verify.php?filter=belum terpenuhi' ? 'active' : '' ?>" href="verify.php?filter=belum terpenuhi">Surat Laporan Magang</a>
+                                    <a class="nav-link <?= $current_page == 'berkasJurusan.php' ? 'active' : '' ?>" href="berkasJurusan.php">
+                                        Berkas Jurusan
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat Serah Terima Tugas Akhir</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat TOIEC</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat Perpustakaan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'verify.php' ? 'active' : '' ?>" href="verify.php">Surat Bebas UKT</a>
+                                    <a class="nav-link <?= $current_page == 'berkasAkademik.php' ? 'active' : '' ?>" href="berkasAkademik.php">
+                                        Berkas Akademik
+                                    </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
+
                     <li class="nav-item <?= $current_page == 'uploadTemplate.php' ? 'active' : '' ?>">
                         <a href="uploadTemplate.php">
                             <i class="fas fa-folder-open"></i>
