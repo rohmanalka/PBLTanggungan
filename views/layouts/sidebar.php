@@ -23,8 +23,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     src="../../../assets/img/brand.png"
                     alt="navbar brand"
                     class="navbar-brand"
-                    height="50" 
-                />
+                    height="50" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -52,71 +51,68 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                 <?php if ($role === 'mahasiswa') { ?>
                     <li class="nav-item <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
                         <a href="dashboard.php">
-                        <i class="fas fa-home"></i>
-                        <p>Dashboard</p>
+                            <i class="fas fa-home"></i>
+                            <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'cekTanggungan.php' ? 'active' : '' ?>">
                         <a href="cekTanggungan.php">
-                        <i class="fas fa-folder-open"></i>
-                        <p>Cek Tanggungan</p>
+                            <i class="fas fa-folder-open"></i>
+                            <p>Cek Tanggungan</p>
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'uploadBerkas.php' ? 'active' : '' ?>">
                         <a href="uploadBerkas.php">
-                        <i class="fas fa-file-upload"></i>
-                        <p>Upload Berkas</p>
+                            <i class="fas fa-file-upload"></i>
+                            <p>Upload Berkas</p>
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'cetakBebasTanggungan.php' ? 'active' : '' ?>">
                         <a href="cetakBebasTanggungan.php">
-                        <i class="fas fa-cloud-download-alt"></i>
-                        <p>Cetak Bebas Tanggungan</p>
+                            <i class="fas fa-cloud-download-alt"></i>
+                            <p>Cetak Bebas Tanggungan</p>
+                        </a>
+                    </li>
+                    <li class="nav-section">
+                        <span class="sidebar-mini-icon">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </span>
+                        <h4 class="text-section">OTHERS</h4>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'settings.php' ? 'active' : '' ?>">
+                        <a href="settings.php">
+                            <i class="fas fa-cog"></i>
+                            <p>Setings</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'account.php' ? 'active' : '' ?>">
+                        <a href="account.php">
+                            <i class="fas fa-user"></i>
+                            <p>Account</p>
                         </a>
                     </li>
                 <?php } elseif ($role === 'admin') { ?>
                     <li class="nav-item <?= $current_page == 'dashboard.php' ? 'active' : '' ?>">
                         <a href="dashboard.php">
-                        <i class="fas fa-home"></i>
-                        <p>Dashboard</p>
+                            <i class="fas fa-home"></i>
+                            <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item <?= $current_page == 'cekTanggungan.php' ? 'active' : '' ?>">
-                        <a href="cekTanggungan.php">
-                        <i class="fas fa-folder-open"></i>
-                        <p>Cek Tanggungan</p>
+                    <li class="nav-item <?= $current_page == 'verify.php' ? 'active' : '' ?>">
+                        <a href="verify.php">
+                            <i class="fas fa-folder-open"></i>
+                            <p>Verifikasi Tanggungan</p>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'uploadTemplate.php' ? 'active' : '' ?>">
+                        <a href="uploadTemplate.php">
+                            <i class="fas fa-folder-open"></i>
+                            <p>Upload Template Surat</p>
                         </a>
                     </li>
                 <?php } ?>
-                
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">OTHERS</h4>
-                </li>
                 <li class="nav-item">
-                    <a
-                        data-bs-toggle="collapse"
-                        href="#dashboard"
-                        class="collapsed"
-                        aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                        <p>Setings</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a
-                        data-bs-toggle="collapse"
-                        href="account.php"
-                        class="collapsed"
-                        aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                        <p>Account</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                        <a href="../../../controllers/logout.php">
+                    <a href="../../../controllers/logout.php">
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Log Out</p>
                     </a>

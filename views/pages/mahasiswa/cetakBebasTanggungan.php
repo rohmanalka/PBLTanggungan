@@ -1,7 +1,7 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/getData.php';
-include '../../../models/cekModel.php';
+include '../../../config/dataMahasiswa.php';
+include '../../../models/MahasiswaModel.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

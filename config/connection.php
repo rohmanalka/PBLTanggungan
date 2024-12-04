@@ -1,6 +1,6 @@
 <?php
 $servername = "DESKTOP-73QVOBT";
-$database = "SiBeta";
+$database = "DBSiBeta";
 $username = "sa";
 $password = "BebasTanggungan";
 

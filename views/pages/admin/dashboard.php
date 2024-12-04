@@ -1,17 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['role'])) {
-  header("Location: ../index.php");
-  exit();
-}
-
-// Redirect mahasiswa jika mencoba mengakses halaman admin
-if ($_SESSION['role'] === 'mahasiswa') {
-  header("Location: ../mahasiswa/dashboard.php");
-  exit();
-}
+include '../../../config/connection.php';
+include '../../../models/AdminModel.php';
+include '../../../config/dataAdmin.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +22,7 @@ if ($_SESSION['role'] === 'mahasiswa') {
       <!-- sidebar -->
 
       <!-- navbar -->
-      <?php include('../../layouts/header.php') ?>
+      <?php include('../../layouts/headerAdmin.php') ?>
       <!-- navbar -->
 
       <!-- <main> -->
@@ -41,7 +32,7 @@ if ($_SESSION['role'] === 'mahasiswa') {
             class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
               <h2 class="fw-bold mb-3">Dashboard</h2>
-              <h6 class="op-7 mb-2">Admin Bebas Tanggungan</h6>
+              <h6 class="op-7 mb-2"><?php echo $nip ?> / <?php echo $nama ?></h6>
             </div>
           </div>
           <div class="row">

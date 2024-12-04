@@ -40,23 +40,23 @@
                     <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell"></i>
                         <span class="notification">
-                            <?= $tanggunganCount['belum_terpenuhi'] > 0 ? $tanggunganCount['belum_terpenuhi'] : ""; ?>
+                            <?= $pendingCount > 0 ? $pendingCount : ""; ?>
                         </span>
                     </a>
                     <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
-                        <?php if (!$allFulfilled): ?>
+                        <?php if ($pendingCount > 0): ?>
                             <li>
-                                <div class="dropdown-title">Anda memiliki <?= $tanggunganCount['belum_terpenuhi'] ?> tanggungan yang belum terpenuhi.</div>
+                                <div class="dropdown-title">Anda memiliki <?= $pendingCount ?> tanggungan mahasiswa yang perlu diverifikasi.</div>
                             </li>
                             <li>
                                 <div class="notif-scroll scrollbar-outer">
                                     <div class="notif-center">
-                                        <a href="cekTanggungan.php">
+                                        <a href="verifikasi_tanggungan.php">
                                             <div class="notif-icon notif-warning">
                                                 <i class="fa fa-exclamation-circle"></i>
                                             </div>
                                             <div class="notif-content">
-                                                <span class="block">Selesaikan tanggungan Anda segera.</span>
+                                                <span class="block">Verifikasi data tanggungan mahasiswa segera.</span>
                                             </div>
                                         </a>
                                     </div>
@@ -64,7 +64,7 @@
                             </li>
                         <?php else: ?>
                             <li>
-                                <div class="dropdown-title">Semua tanggungan sudah terpenuhi. Selamat!</div>
+                                <div class="dropdown-title">Semua data tanggungan mahasiswa telah diverifikasi.</div>
                             </li>
                         <?php endif; ?>
                     </ul>
@@ -87,9 +87,8 @@
                                         <img src="assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
                                     </div>
                                     <div class="u-text">
-                                        <h4><?php echo $panggilan ?></h4>
-                                        <p class="text-muted"><?php echo $nim ?></p>
-                                        <a href="account.php" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                        <h4><?php echo $nama ?></h4>
+                                        <p class="text-muted"><?php echo $nip ?></p>
                                     </div>
                                 </div>
                             </li>

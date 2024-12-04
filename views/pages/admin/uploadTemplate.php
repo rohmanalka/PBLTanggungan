@@ -1,7 +1,7 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/dataMahasiswa.php';
-include '../../../models/MahasiswaModel.php';
+include '../../../models/AdminModel.php';
+include '../../../config/dataAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ include '../../../models/MahasiswaModel.php';
       <!-- sidebar -->
 
       <!-- navbar -->
-      <?php include('../../layouts/header.php') ?>
+      <?php include('../../layouts/headerAdmin.php') ?>
       <!-- navbar -->
 
       <!-- <main> -->

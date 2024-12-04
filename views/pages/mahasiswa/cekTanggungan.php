@@ -1,7 +1,7 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/getData.php';
-include '../../../models/cekModel.php';
+include '../../../config/dataMahasiswa.php';
+include '../../../models/MahasiswaModel.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,8 +87,10 @@ include '../../../models/cekModel.php';
                             <td>
                               <?php if ($data['status'] === 'terpenuhi'): ?>
                                 <span class="badge badge-success">Terpenuhi</span>
+                              <?php elseif ($data['status'] === 'pending'): ?>
+                                <span class="badge badge-info">Pending</span>
                               <?php else: ?>
-                                <span class="badge badge-warning">Belum Terpenuhi</span>
+                                <span class="badge badge-danger">Belum Terpenuhi</span>
                               <?php endif; ?>
                             </td>
                           </tr>

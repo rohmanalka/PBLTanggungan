@@ -1,3 +1,8 @@
+<?php
+include '../../../config/connection.php';
+include '../../../config/dataMahasiswa.php';
+include '../../../models/MahasiswaModel.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +50,7 @@
                   </div>
                   <div class="col-12 col-md-8">
                     <div class="card">
-                      <div class="card-body"><span>Muhammad Rohman Al Kautsar</span></div>
+                      <div class="card-body"><span><?php echo $nama ?></span></div>
                     </div>
                   </div>
                 </div>
@@ -59,21 +64,7 @@
                   </div>
                   <div class="col-12 col-md-8">
                     <div class="card">
-                      <div class="card-body"><span>2341760055</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-0">
-                <div class="row row-demo-grid" style="justify-content: center;">
-                  <div class="col-6 col-md-3">
-                    <div class="card">
-                      <div class="card-body"><span>EMAIL</span></div>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-8">
-                    <div class="card">
-                      <div class="card-body"><span>alka@gmail.com</span></div>
+                      <div class="card-body"><span><?php echo $nim ?></span></div>
                     </div>
                   </div>
                 </div>
@@ -87,7 +78,7 @@
                   </div>
                   <div class="col-12 col-md-8">
                     <div class="card">
-                      <div class="card-body"><span>TEKNOLOGI INFORMASI</span></div>
+                      <div class="card-body"><span><?php echo $jurusan ?></span></div>
                     </div>
                   </div>
                 </div>
@@ -101,7 +92,7 @@
                   </div>
                   <div class="col-12 col-md-8">
                     <div class="card">
-                      <div class="card-body"><span>D-IV SISTEM INFORMASI BISNIS</span></div>
+                      <div class="card-body"><span><?php echo $prodi ?></span></div>
                     </div>
                   </div>
                 </div>
@@ -115,23 +106,23 @@
                   </div>
                   <div class="col-12 col-md-8">
                     <div class="card">
-                      <div class="card-body"><span>2022</span></div>
+                      <div class="card-body"><span><?php echo $angkatan ?></span></div>
                     </div>
                   </div>
                 </div>
               </div>
-        </div>
-      </div>
-      <!-- <main> -->
+            </div>
+          </div>
+          <!-- <main> -->
 
-      <!-- <footer> -->
-      <?php include('../../layouts/footer.php') ?>
-      <!-- <footer> -->
-    </div>
-  </div>
-  <!-- js -->
-  <?php include('js.php') ?>
-  <!-- js -->
+        </div>
+        <!-- <footer> -->
+        <?php include('../../layouts/footer.php') ?>
+        <!-- <footer> -->
+      </div>
+      <!-- js -->
+      <?php include('js.php') ?>
+      <!-- js -->
 </body>
 
 </html>

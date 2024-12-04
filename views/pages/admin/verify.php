@@ -1,7 +1,7 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/dataMahasiswa.php';
-include '../../../models/MahasiswaModel.php';
+include '../../../models/AdminModel.php';
+include '../../../config/dataAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ include '../../../models/MahasiswaModel.php';
       <!-- sidebar -->
 
       <!-- navbar -->
-      <?php include('../../layouts/header.php') ?>
+      <?php include('../../layouts/headerAdmin.php') ?>
       <!-- navbar -->
 
       <!-- <main> -->
@@ -31,7 +31,7 @@ include '../../../models/MahasiswaModel.php';
           <div
             class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
-              <h2 class="fw-bold mb-3">Upload Berkas</h2>
+              <h2 class="fw-bold mb-3">Tanggungan Mahasiswa</h2>
               <h6 class="op-7 mb-2"><?php echo $nim ?> / <?php echo $nama ?></h6>
             </div>
           </div>
@@ -39,7 +39,7 @@ include '../../../models/MahasiswaModel.php';
             <div class="card card-round">
               <div class="card-header">
                 <div class="card-head-row card-tools-still-right">
-                  <div class="card-title">Silahkan upload berkas tanggungan anda</div>
+                  <div class="card-title">Berikut Tanggungan yang harus dipenuhi</div>
                   <div class="card-tools">
                     <a href="#" class="btn btn-black btn-border btn-round btn-sm me-2" style="width: 150px;">
                       <span class="btn-label">
@@ -47,6 +47,17 @@ include '../../../models/MahasiswaModel.php';
                       </span>
                       Search...
                     </a>
+                    <div class="btn-group dropdown" style="width: 150px;">
+                      <button class="btn btn-black btn-border dropdown-toggle btn-round btn-sm me-2" type="button" data-bs-toggle="dropdown">
+                        Filter..
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li>
+                          <a class="dropdown-item" href="#">Terpenuhi</a>
+                          <a class="dropdown-item" href="#">Belum Terpenuhi</a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -59,10 +70,9 @@ include '../../../models/MahasiswaModel.php';
                       <thead class="thead-light">
                         <tr>
                           <th scope="col">No</th>
-                          <th scope="col">ID</th>
                           <th scope="col">Tanggungan</th>
                           <th scope="col">Keterangan</th>
-                          <th scope="col">Aksi</th>
+                          <th scope="col">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -72,39 +82,15 @@ include '../../../models/MahasiswaModel.php';
                         foreach ($tanggunganData as $data): ?>
                           <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= htmlspecialchars($data['id_tanggungan']); ?></td>
                             <td><?= htmlspecialchars($data['jenis_tanggungan']); ?></td>
                             <td><?= htmlspecialchars($data['keterangan']); ?></td>
                             <td>
                               <?php if ($data['status'] === 'terpenuhi'): ?>
                                 <span class="badge badge-success">Terpenuhi</span>
+                              <?php elseif ($data['status'] === 'pending'): ?>
+                                <span class="badge badge-info">Pending</span>
                               <?php else: ?>
-                                <!-- Button untuk membuka modal upload -->
-                                <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target='#uploadModal<?= $data['id_tanggungan']; ?>'>
-                                  Upload
-                                </button>
-
-                                <!-- Modal untuk upload file -->
-                                <div class="modal fade" id="uploadModal<?= $data['id_tanggungan']; ?>" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h5 class="modal-title" id="uploadModalLabel">Upload Berkas</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <form action="../../../models/UploadModel.php" method="post" enctype="multipart/form-data">
-                                          <input type="hidden" name="id_tanggungan" value="<?= $data['id_tanggungan']; ?>">
-                                          <div class="mb-3">
-                                            <label for="fileInput" class="form-label">Pilih Berkas</label>
-                                            <input type="file" class="form-control" id="fileInput" name="file" required>
-                                          </div>
-                                          <button type="submit" class="btn btn-primary">Upload</button>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                <span class="badge badge-danger">Belum Terpenuhi</span>
                               <?php endif; ?>
                             </td>
                           </tr>
@@ -119,6 +105,7 @@ include '../../../models/MahasiswaModel.php';
         </div>
       </div>
       <!-- <main> -->
+
       <!-- <footer> -->
       <?php include('../../layouts/footer.php') ?>
       <!-- <footer> -->
