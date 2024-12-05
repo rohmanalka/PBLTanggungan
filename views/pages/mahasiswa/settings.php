@@ -2,45 +2,6 @@
 include '../../../config/connection.php';
 include '../../../config/dataMahasiswa.php';
 include '../../../models/MahasiswaModel.php';
-
-$id_user = $_SESSION['id_user'] ?? null; 
-if (!$id_user) {
-    die('User tidak ditemukan. Pastikan sudah login.');
-}
-
-$sqlMahasiswa = "SELECT * FROM Mahasiswa WHERE id_user = ?";
-$stmtMahasiswa = sqlsrv_query($conn, $sqlMahasiswa, [$id_user]);
-$rowMahasiswa = sqlsrv_fetch_array($stmtMahasiswa, SQLSRV_FETCH_ASSOC);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $first_name = $_POST['first_name'] ?? '';
-    $last_name = $_POST['last_name'] ?? '';
-    $nim = $_POST['nim'] ?? '';
-    $jurusan = $_POST['jurusan'] ?? '';
-    $program_studi = $_POST['program_studi'] ?? '';
-    $angkatan = $_POST['angkatan'] ?? '';
-    $email = $_POST['email'] ?? '';
-
-    $sqlUpdate = "UPDATE Mahasiswa SET 
-                    first_name = ?, 
-                    last_name = ?, 
-                    nim = ?, 
-                    jurusan = ?, 
-                    program_studi = ?, 
-                    angkatan = ?, 
-                    email = ?
-                  WHERE id_user = ?";
-    $params = [$first_name, $last_name, $nim, $jurusan, $program_studi, $angkatan, $email, $id_user];
-    $stmtUpdate = sqlsrv_query($conn, $sqlUpdate, $params);
-
-    if ($stmtUpdate) {
-        echo "<script>alert('Data berhasil diperbarui!');</script>";
-        // Refresh halaman untuk menampilkan data terbaru
-        header("Refresh:0");
-    } else {
-        die(print_r(sqlsrv_errors(), true));
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -81,46 +42,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
               </div>
               <div class="card-body">
-                <form method="POST">
+                <form action="../../../models/settingModel.php" method="POST">
+                  <input type="hidden" name="id_mhs" value="<?php echo htmlspecialchars($rowMahasiswa['id_mhs'] ?? ''); ?>">
+
                   <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['first_name'] ?? ''); ?>" required>
+                    <input type="text" class="form-control" id="first_name" name="first_name"
+                      value="<?php echo htmlspecialchars($rowMahasiswa['first_name'] ?? ''); ?>" required>
                   </div>
                   <div class="form-group">
                     <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['last_name'] ?? ''); ?>" required>
+                    <input type="text" class="form-control" id="last_name" name="last_name"
+                      value="<?php echo htmlspecialchars($rowMahasiswa['last_name'] ?? ''); ?>" required>
                   </div>
                   <div class="form-group">
                     <label for="nim">NIM</label>
-                    <input type="text" class="form-control" id="nim" name="nim" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['nim'] ?? ''); ?>" required>
+                    <input type="text" class="form-control" id="nim" name="nim"
+                      value="<?php echo htmlspecialchars($rowMahasiswa['nim'] ?? ''); ?>" required>
                   </div>
                   <div class="form-group">
                     <label for="jurusan">Jurusan</label>
-                    <input type="text" class="form-control" id="jurusan" name="jurusan" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['jurusan'] ?? ''); ?>" required>
+                    <input type="text" class="form-control" id="jurusan" name="jurusan"
+                      value="<?php echo htmlspecialchars($rowMahasiswa['jurusan'] ?? ''); ?>" required>
                   </div>
                   <div class="form-group">
-                    <label for="program_studi">Program Studi</label>
-                    <input type="text" class="form-control" id="program_studi" name="program_studi" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['program_studi'] ?? ''); ?>" required>
+                    <label for="prodi">Program Studi</label>
+                    <input type="text" class="form-control" id="prodi" name="prodi"
+                      value="<?php echo htmlspecialchars($rowMahasiswa['prodi'] ?? ''); ?>" required>
                   </div>
                   <div class="form-group">
                     <label for="angkatan">Angkatan</label>
-                    <input type="text" class="form-control" id="angkatan" name="angkatan" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['angkatan'] ?? ''); ?>" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" 
-                           value="<?php echo htmlspecialchars($rowMahasiswa['email'] ?? ''); ?>" required>
+                    <input type="text" class="form-control" id="angkatan" name="angkatan"
+                      value="<?php echo htmlspecialchars($rowMahasiswa['angkatan'] ?? ''); ?>" required>
                   </div>
                   <div class="form-group text-center">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                   </div>
                 </form>
+
               </div>
             </div>
           </div>
