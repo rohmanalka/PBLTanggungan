@@ -100,7 +100,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     </li>
                     <li class="nav-item <?= in_array($current_page, ['berkasPerpus.php', 'berkasJurusan.php', 'berkasAkademik.php']) ? 'active' : '' ?> dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#verifikasiSubmenu" aria-expanded="false">
-                            <i class="fas fa-folder-open"></i>
+                            <i class="fas fa-file-signature"></i>
                             <p>Verifikasi Tanggungan</p>
                         </a>
                         <div id="verifikasiSubmenu" class="collapse <?= in_array($current_page, ['berkasPerpus.php', 'berkasJurusan.php', 'berkasAkademik.php']) ? 'show' : '' ?>">
@@ -126,7 +126,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
 
                     <li class="nav-item <?= $current_page == 'uploadTemplate.php' ? 'active' : '' ?>">
                         <a href="uploadTemplate.php">
-                            <i class="fas fa-folder-open"></i>
+                            <i class="fas fa-file-upload"></i>
                             <p>Upload Template Surat</p>
                         </a>
                     </li>
