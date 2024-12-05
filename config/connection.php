@@ -1,8 +1,8 @@
 <?php
-$servername = "AXIOOPONGO";
+$servername = "IVANRIZAL";
 $database = "DBSiBeta";
-$username = "sa";
-$password = "BebasTanggungan";
+$username = "";
+$password = "";
 
 // Koneksi ke database
 $conn = sqlsrv_connect($servername, [
