@@ -36,27 +36,27 @@ include '../../../config/dataAdmin.php';
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-icon">
                       <div
                         class="icon-big text-center icon-primary bubble-shadow-small">
-                        <i class="fas fa-folder-open"></i>
+                        <i class="fas fa-user"></i>
                       </div>
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
-                        <p class="card-category">Total Tanggungan</p>
-                        <h4 class="card-title">6</h4>
+                        <p class="card-category">Jumlah Tanggungan Mahasiswa</p>
+                        <h4 class="card-title">10</h4>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
@@ -68,15 +68,15 @@ include '../../../config/dataAdmin.php';
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
-                        <p class="card-category">Selesai</p>
-                        <h4 class="card-title">4</h4>
+                        <p class="card-category">Sudah Terverifikasi</p>
+                        <h4 class="card-title">14</h4>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
               <div class="card card-stats card-round">
                 <div class="card-body">
                   <div class="row align-items-center">
@@ -88,28 +88,8 @@ include '../../../config/dataAdmin.php';
                     </div>
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
-                        <p class="card-category">Belum Terpenuhi</p>
-                        <h4 class="card-title">2</h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="card card-stats card-round">
-                <div class="card-body">
-                  <div class="row align-items-center">
-                    <div class="col-icon">
-                      <div
-                        class="icon-big text-center icon-secondary bubble-shadow-small">
-                        <i class="fas fa-pen"></i>
-                      </div>
-                    </div>
-                    <div class="col col-stats ms-3 ms-sm-0">
-                      <div class="numbers">
-                        <p class="card-category">Status</p>
-                        <h4 class="card-title">Belum</h4>
+                        <p class="card-category">Belum Terverifikasi</p>
+                        <h4 class="card-title">6</h4>
                       </div>
                     </div>
                   </div>
