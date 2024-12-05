@@ -96,4 +96,13 @@ $model = new MahasiswaModel($conn);
 $tanggunganData = $model->getTanggunganByMahasiswa($id_mhs);
 $tanggunganCount = $model->countTanggunganStatus($id_mhs);
 $allFulfilled = $model->isAllTanggunganFulfilled($id_mhs);
+
+// Tangkap parameter filter dari URL
+$filterStatus = isset($_GET['filter']) ? $_GET['filter'] : '';
+if ($filterStatus) {
+    $tanggunganData = array_filter($tanggunganData, function ($data) use ($filterStatus) {
+        return $data['status'] === $filterStatus;
+    });
+}
+
 ?>

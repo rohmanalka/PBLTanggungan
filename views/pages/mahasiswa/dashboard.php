@@ -135,33 +135,41 @@ include '../../../models/MahasiswaModel.php';
               </div>
               <div class="card-body p-0">
                 <div class="table-responsive">
-                  <table class="table align-items-center mb-0">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Tanggungan</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $no = 1;
-                      foreach ($tanggunganData as $data): ?>
+                  <?php if (empty($tanggunganData)): ?>
+                    <div class="alert alert-info">Tidak ada tanggungan untuk mahasiswa ini.</div>
+                  <?php else: ?>
+                    <table class="table align-items-center mb-0">
+                      <thead class="thead-light">
                         <tr>
-                          <th><?= $no++; ?></th>
-                          <td><?= htmlspecialchars($data['jenis_tanggungan']); ?></td>
-                          <td><?= htmlspecialchars($data['keterangan']); ?></td>
-                          <td>
-                            <?php if ($data['status'] === 'terpenuhi'): ?>
-                              <span class="badge badge-success">Terpenuhi</span>
-                            <?php else: ?>
-                              <span class="badge badge-warning">Belum Terpenuhi</span>
-                            <?php endif; ?>
-                          </td>
+                          <th scope="col">No</th>
+                          <th scope="col">Tanggungan</th>
+                          <th scope="col">Keterangan</th>
+                          <th scope="col">Status</th>
                         </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        <!-- Projects table -->
+                        <?php
+                        $no = 1;
+                        foreach ($tanggunganData as $data): ?>
+                          <tr>
+                            <th><?= $no++; ?></th>
+                            <td><?= htmlspecialchars($data['jenis_tanggungan']); ?></td>
+                            <td><?= htmlspecialchars($data['keterangan']); ?></td>
+                            <td>
+                              <?php if ($data['status'] === 'terpenuhi'): ?>
+                                <span class="badge badge-success">Terpenuhi</span>
+                              <?php elseif ($data['status'] === 'pending'): ?>
+                                <span class="badge badge-info">Pending</span>
+                              <?php else: ?>
+                                <span class="badge badge-danger">Belum Terpenuhi</span>
+                              <?php endif; ?>
+                            </td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                      </tbody>
+                    </table>
                 </div>
               </div>
             </div>
