@@ -111,9 +111,24 @@ include '../../../models/MahasiswaModel.php';
                   </div>
                 </div>
               </div>
+              <div class="card-body p-0">
+                <div class="row row-demo-grid" style="justify-content: center;">
+                  <div class="col-6 col-md-3">
+                    <div class="card">
+                      <div class="card-body"><span>EMAIL</span></div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <div class="card">
+                      <div class="card-body"><span><?php echo $email ?></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
-          <!-- <main> -->
+          <!-- <main> -->
 
         </div>
         <!-- <footer> -->
