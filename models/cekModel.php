@@ -112,6 +112,7 @@ $sqlMahasiswa = "SELECT id_mhs FROM Mahasiswa WHERE id_user = ?";
 $stmtMahasiswa = sqlsrv_query($conn, $sqlMahasiswa, [$id_user]);
 $rowMahasiswa = sqlsrv_fetch_array($stmtMahasiswa, SQLSRV_FETCH_ASSOC);
 $id_mhs = $rowMahasiswa['id_mhs'];
+$email = $rowMahasiswa['email'];
 
 // Inisialisasi model
 $model = new CekModel($conn);
