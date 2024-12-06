@@ -77,7 +77,6 @@ class MahasiswaModel {
         $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
         sqlsrv_free_stmt($stmt);
 
-        // Jika jumlah belum terpenuhi adalah 0, maka semua terpenuhi
         return $row['belum_terpenuhi'] === 0;
     }
 }
@@ -85,11 +84,21 @@ class MahasiswaModel {
 // Ambil ID mahasiswa dari session
 $id_user = $_SESSION['id_user'];
 
-// Query untuk mendapatkan id mahasiswa
-$sqlMahasiswa = "SELECT id_mhs FROM Mahasiswa WHERE id_user = ?";
+// Query mendapatkan id mahasiswa dan email
+$sqlMahasiswa = "SELECT id_mhs, email FROM Mahasiswa WHERE id_user = ?";
 $stmtMahasiswa = sqlsrv_query($conn, $sqlMahasiswa, [$id_user]);
+
+if ($stmtMahasiswa === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+
 $rowMahasiswa = sqlsrv_fetch_array($stmtMahasiswa, SQLSRV_FETCH_ASSOC);
+if (!$rowMahasiswa) {
+    die("Data mahasiswa tidak ditemukan.");
+}
+
 $id_mhs = $rowMahasiswa['id_mhs'];
+$email = $rowMahasiswa['email'];
 
 // Inisialisasi model
 $model = new MahasiswaModel($conn);
@@ -97,7 +106,6 @@ $tanggunganData = $model->getTanggunganByMahasiswa($id_mhs);
 $tanggunganCount = $model->countTanggunganStatus($id_mhs);
 $allFulfilled = $model->isAllTanggunganFulfilled($id_mhs);
 
-// Tangkap parameter filter dari URL
 $filterStatus = isset($_GET['filter']) ? $_GET['filter'] : '';
 if ($filterStatus) {
     $tanggunganData = array_filter($tanggunganData, function ($data) use ($filterStatus) {
