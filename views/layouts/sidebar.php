@@ -82,7 +82,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <li class="nav-item <?= $current_page == 'settings.php' ? 'active' : '' ?>">
                         <a href="settings.php">
                             <i class="fas fa-cog"></i>
-                            <p>Setings</p>
+                            <p>Settings</p>
                         </a>
                     </li>
                     <li class="nav-item <?= $current_page == 'account.php' ? 'active' : '' ?>">
@@ -135,6 +135,12 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                             <i class="fa fa-ellipsis-h"></i>
                         </span>
                         <h4 class="text-section">OTHERS</h4>
+                    </li>
+                    <li class="nav-item <?= $current_page == 'settings.php' ? 'active' : '' ?>">
+                        <a href="settings.php">
+                            <i class="fas fa-cog"></i>
+                            <p>Settings</p>
+                        </a>
                     </li>
                 <?php } ?>
                 <li class="nav-item">
