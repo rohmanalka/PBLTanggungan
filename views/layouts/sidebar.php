@@ -136,15 +136,30 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         </span>
                         <h4 class="text-section">OTHERS</h4>
                     </li>
-                    <li class="nav-item <?= $current_page == 'settings.php' ? 'active' : '' ?>">
-                        <a href="settings.php">
-                            <i class="fas fa-cog"></i>
+                    <li class="nav-item <?= in_array($current_page, ['kelolaUser.php', 'kelolaMahasiswa.php']) ? 'active' : '' ?> dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#settingsSubmenu" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
                             <p>Settings</p>
                         </a>
+                        <div id="settingsSubmenu" class="collapse <?= in_array($current_page, ['kelolaUser.php', 'kelolaMahasiswa.php']) ? 'show' : '' ?>">
+                            <ul class="nav flex-column ms-3">
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'kelolaUser.php' ? 'active' : '' ?>" href="kelolaUser.php">
+                                        Kelola User
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $current_page == 'kelolaMahasiswa.php' ? 'active' : '' ?>" href="kelolaMahasiswa.php">
+                                        Kelola Mahasiswa
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
+
                 <?php } ?>
                 <li class="nav-item">
-                    <a href="../../../controllers/logout.php">
+                    <a href="#" id="out">
                         <i class="fas fa-sign-out-alt"></i>
                         <p>Log Out</p>
                     </a>

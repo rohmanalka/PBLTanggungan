@@ -12,18 +12,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Sorry, only JPG, JPEG, and PDF files are allowed.";
         } else {
             // Direktori penyimpanan
-            $uploadDir = "../upload/";
+            $uploadDir = "../upload/template";
             $filePath = $uploadDir . $fileName;
 
             // Ambil ID tanggungan dari form
-            $id_tanggungan = $_POST['id_tanggungan'];
+            $id_jnsTanggungan = $_POST['id_jnsTanggungan'];
 
             // Koneksi ke database
             include('../config/connection.php');
 
             // Ambil nama file lama dari database untuk dihapus
-            $sqlOldFile = "SELECT berkas FROM tanggungan WHERE id_tanggungan = ?";
-            $stmtOldFile = sqlsrv_prepare($conn, $sqlOldFile, array(&$id_tanggungan));
+            $sqlOldFile = "SELECT template FROM JenisTanggungan WHERE id_jnsTanggungan = ?";
+            $stmtOldFile = sqlsrv_prepare($conn, $sqlOldFile, array(&$id_jnsTanggungan));
 
             if (sqlsrv_execute($stmtOldFile)) {
                 $oldFile = sqlsrv_fetch_array($stmtOldFile, SQLSRV_FETCH_ASSOC)['berkas'];
@@ -37,14 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Pindahkan file baru ke folder upload
             if (move_uploaded_file($fileTmp, $filePath)) {
                 // Query untuk memperbarui nama file di database
-                $sql = "UPDATE tanggungan 
-                        SET berkas = ?, status = 'pending' 
-                        WHERE id_tanggungan = ?";
-                $stmt = sqlsrv_prepare($conn, $sql, array(&$fileName, &$id_tanggungan));
+                $sql = "UPDATE JenisTanggungan 
+                        SET template = ? 
+                        WHERE id_jnsTanggungan = ?";
+                $stmt = sqlsrv_prepare($conn, $sql, array(&$fileName, &$id_jnsTanggungan));
 
                 // Eksekusi query
                 if (sqlsrv_execute($stmt)) {
-                    echo "The file has been updated successfully, and the status has been updated to 'pending'.";
+                    echo "The file has been updated successfully";
                 } else {
                     echo "Error: " . print_r(sqlsrv_errors(), true);
                 }

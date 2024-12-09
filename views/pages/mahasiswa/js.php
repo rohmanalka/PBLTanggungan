@@ -8,12 +8,12 @@
       var allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
       if (!allowedTypes.includes(file.type)) {
         alert("Sorry, only JPG, JPEG, PNG, GIF, and PDF files are allowed.");
-        event.preventDefault();  // Menghentikan form submission
+        event.preventDefault(); // Menghentikan form submission
         return;
       }
 
       // Periksa ukuran file
-      var maxSize = 5 * 1024 * 1024;  // 5MB
+      var maxSize = 5 * 1024 * 1024; // 5MB
       if (file.size > maxSize) {
         alert("Sorry, the file is too large. Maximum allowed size is 5MB.");
         event.preventDefault();
@@ -25,19 +25,19 @@
 
 <!-- Onclick menu -->
 <script>
-    // Ambil semua elemen dengan kelas 'nav-item'
-    const navItems = document.querySelectorAll('.nav-item');
+  // Ambil semua elemen dengan kelas 'nav-item'
+  const navItems = document.querySelectorAll('.nav-item');
 
-    // Tambahkan event listener untuk setiap item
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Hapus kelas 'active' dari semua item
-            navItems.forEach(i => i.classList.remove('active'));
+  // Tambahkan event listener untuk setiap item
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Hapus kelas 'active' dari semua item
+      navItems.forEach(i => i.classList.remove('active'));
 
-            // Tambahkan kelas 'active' pada item yang diklik
-            item.classList.add('active');
-        });
+      // Tambahkan kelas 'active' pada item yang diklik
+      item.classList.add('active');
     });
+  });
 </script>
 <!--   Core JS Files   -->
 <script src="../../../assets/js/core/jquery-3.7.1.min.js"></script>

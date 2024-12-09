@@ -1,7 +1,6 @@
 <?php
 include '../../../config/connection.php';
 include '../../../models/AdminModel.php';
-include '../../../config/dataAdmin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +31,7 @@ include '../../../config/dataAdmin.php';
             class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
               <h2 class="fw-bold mb-3">Dashboard</h2>
-              <h6 class="op-7 mb-2"><?php echo $nip ?> / <?php echo $nama ?></h6>
+              <h6 class="op-7 mb-2"><?= htmlspecialchars($dataAdmin['nip']) ?> / <?= htmlspecialchars($dataAdmin['nama']) ?></h6>
             </div>
           </div>
           <div class="row">
@@ -108,6 +107,33 @@ include '../../../config/dataAdmin.php';
   </div>
   <!-- js -->
   <?php include('js.php') ?>
+  <script>
+    // Tombol Logout dengan ID #logout
+    $("#out").click(function(e) {
+      // SweetAlert untuk konfirmasi
+      swal({
+        title: "Apakah Anda Yakin?",
+        text: "Anda akan log out!",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Cancel",
+            visible: true,
+            className: "btn btn-danger",
+          },
+          confirm: {
+            text: "Yes, log out",
+            className: "btn btn-success",
+          },
+        },
+      }).then((willLogout) => {
+        if (willLogout) {
+          // Redirect ke halaman logout
+          window.location.href = "../../../controllers/logout.php";
+        }
+      });
+    });
+  </script>
   <!-- js -->
 </body>
 

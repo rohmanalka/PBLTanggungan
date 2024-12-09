@@ -72,11 +72,11 @@
                 <li class="nav-item topbar-user dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="../../../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
+                            <img src="<?php echo $foto ?>" alt="..." class="avatar-img rounded-circle" />
                         </div>
                         <span class="profile-username">
                             <span class="op-7">HI,</span>
-                            <span class="fw-bold"><?php echo $nama ?></span>
+                            <span class="fw-bold"><?= htmlspecialchars($dataMhs['nama']) ?></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -84,12 +84,12 @@
                             <li>
                                 <div class="user-box">
                                     <div class="avatar-lg">
-                                        <img src="assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
+                                        <img src="<?php echo $foto ?>" alt="image profile" class="avatar-img rounded" />
                                     </div>
                                     <div class="u-text">
                                         <h4><?php echo $panggilan ?></h4>
-                                        <p class="text-muted"><?php echo $nim ?></p>
-                                        <a href="account.php" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                        <p class="text-muted"><?= htmlspecialchars($dataMhs['NIM']) ?></p>
+                                        <a href="account.php" class="btn btn-xs btn-secondary btn-sm">Change Password</a>
                                     </div>
                                 </div>
                             </li>

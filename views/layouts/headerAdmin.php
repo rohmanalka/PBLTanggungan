@@ -76,7 +76,7 @@
                         </div>
                         <span class="profile-username">
                             <span class="op-7">HI,</span>
-                            <span class="fw-bold"><?php echo $nama ?></span>
+                            <span class="fw-bold"><?= htmlspecialchars($dataAdmin['nama']) ?></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -87,8 +87,8 @@
                                         <img src="assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
                                     </div>
                                     <div class="u-text">
-                                        <h4><?php echo $nama ?></h4>
-                                        <p class="text-muted"><?php echo $nip ?></p>
+                                        <h4><?= htmlspecialchars($dataAdmin['nama']) ?></h4>
+                                        <p class="text-muted"><?= htmlspecialchars($dataAdmin['nip']) ?></p>
                                     </div>
                                 </div>
                             </li>

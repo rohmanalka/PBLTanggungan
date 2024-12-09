@@ -1,7 +1,7 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/dataMahasiswa.php';
 include '../../../models/MahasiswaModel.php';
+include '../../../models/setMhsModel.php'
 ?>
 
 <!DOCTYPE html>
@@ -38,45 +38,30 @@ include '../../../models/MahasiswaModel.php';
             <div class="card card-round">
               <div class="card-header">
                 <div class="card-head-row card-tools-still-right">
-                  <div class="card-title">Edit Biodata</div>
+                  <div class="card-title">Edit Password</div>
                 </div>
               </div>
               <div class="card-body">
-                <form action="../../../models/settingModel.php" method="POST">
-                  <input type="hidden" name="id_mhs" value="<?php echo htmlspecialchars($rowMahasiswa['id_mhs'] ?? ''); ?>">
+                <form action="settings.php" method="POST">
+                  <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($row['id_user'] ?? ''); ?>">
 
                   <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name"
-                      value="<?php echo htmlspecialchars($rowMahasiswa['first_name'] ?? ''); ?>" required>
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo htmlspecialchars($row['username'] ?? ''); ?>" required readonly>
                   </div>
+
                   <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name"
-                      value="<?php echo htmlspecialchars($rowMahasiswa['last_name'] ?? ''); ?>" required>
+                    <label for="current_password">Current Password</label>
+                    <input type="password" class="form-control" id="current_password" name="current_password" required>
                   </div>
+
                   <div class="form-group">
-                    <label for="nim">NIM</label>
-                    <input type="text" class="form-control" id="nim" name="nim"
-                      value="<?php echo htmlspecialchars($rowMahasiswa['nim'] ?? ''); ?>" required>
+                    <label for="new_password">New Password</label>
+                    <input type="password" class="form-control" id="new_password" name="new_password" required>
                   </div>
-                  <div class="form-group">
-                    <label for="jurusan">Jurusan</label>
-                    <input type="text" class="form-control" id="jurusan" name="jurusan"
-                      value="<?php echo htmlspecialchars($rowMahasiswa['jurusan'] ?? ''); ?>" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="prodi">Program Studi</label>
-                    <input type="text" class="form-control" id="prodi" name="prodi"
-                      value="<?php echo htmlspecialchars($rowMahasiswa['prodi'] ?? ''); ?>" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="angkatan">Angkatan</label>
-                    <input type="text" class="form-control" id="angkatan" name="angkatan"
-                      value="<?php echo htmlspecialchars($rowMahasiswa['angkatan'] ?? ''); ?>" required>
-                  </div>
+
                   <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Update Password</button>
                   </div>
                 </form>
 
@@ -93,6 +78,33 @@ include '../../../models/MahasiswaModel.php';
   </div>
   <!-- js -->
   <?php include('js.php') ?>
+  <script>
+    // Tombol Logout dengan ID #logout
+    $("#out").click(function(e) {
+      // SweetAlert untuk konfirmasi
+      swal({
+        title: "Apakah Anda Yakin?",
+        text: "Anda akan log out!",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Cancel",
+            visible: true,
+            className: "btn btn-danger",
+          },
+          confirm: {
+            text: "Yes, log out",
+            className: "btn btn-success",
+          },
+        },
+      }).then((willLogout) => {
+        if (willLogout) {
+          // Redirect ke halaman logout
+          window.location.href = "../../../controllers/logout.php";
+        }
+      });
+    });
+  </script>
   <!-- js -->
 </body>
 

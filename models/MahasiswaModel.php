@@ -1,12 +1,44 @@
 <?php
-class MahasiswaModel {
+class MahasiswaModel
+{
     private $db;
 
-    public function __construct($connection) {
+    public function __construct($connection)
+    {
         $this->db = $connection;
     }
 
-    public function getTanggunganByMahasiswa($id_mhs) {
+    public function getMahasiswaById($id_mhs)
+    {
+        $sql = "
+            SELECT
+                id_mhs,
+                nama,
+                NIM,
+                jurusan,
+                prodi,
+                angkatan,
+                fotoProfil
+            FROM
+                Mahasiswa
+            WHERE
+                id_mhs = ?";
+        $params = [$id_mhs];
+        $stmt = sqlsrv_query($this->db, $sql, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        sqlsrv_free_stmt($stmt);
+
+        return $data;
+    }
+
+
+    public function getTanggunganByMahasiswa($id_mhs)
+    {
         $sql = "
             SELECT 
                 jt.jenis_tanggungan, 
@@ -37,7 +69,8 @@ class MahasiswaModel {
         return $data;
     }
 
-    public function countTanggunganStatus($id_mhs) {
+    public function countTanggunganStatus($id_mhs)
+    {
         $sql = "
             SELECT 
                 COUNT(*) AS total_tanggungan,
@@ -60,7 +93,8 @@ class MahasiswaModel {
         return $row;
     }
 
-    public function isAllTanggunganFulfilled($id_mhs) {
+    public function isAllTanggunganFulfilled($id_mhs)
+    {
         $sql = "SELECT 
                     COUNT(*) AS belum_terpenuhi
                 FROM 
@@ -82,9 +116,18 @@ class MahasiswaModel {
     }
 }
 
+session_start();
+if (!isset($_SESSION['role'])) {
+    header("Location: ../index.php");
+    exit();
+}
+if ($_SESSION['role'] === 'admin') {
+    header("Location: ../admin/dashboard.php");
+    exit();
+}
+
 // Ambil ID mahasiswa dari session
 $id_user = $_SESSION['id_user'];
-
 // Query untuk mendapatkan id mahasiswa
 $sqlMahasiswa = "SELECT id_mhs FROM Mahasiswa WHERE id_user = ?";
 $stmtMahasiswa = sqlsrv_query($conn, $sqlMahasiswa, [$id_user]);
@@ -96,6 +139,12 @@ $model = new MahasiswaModel($conn);
 $tanggunganData = $model->getTanggunganByMahasiswa($id_mhs);
 $tanggunganCount = $model->countTanggunganStatus($id_mhs);
 $allFulfilled = $model->isAllTanggunganFulfilled($id_mhs);
+$dataMhs = $model->getMahasiswaById($id_mhs);
+$nama = $dataMhs['nama'];
+$panggilan = explode(" ", $nama)[1];
+$foto = !empty($dataMhs['fotoProfil'])
+    ? "../../../upload/profile/" . $dataMhs['fotoProfil']
+    : "../../../upload/profile/default.jpg"; // Foto default jika kosong
 
 // Tangkap parameter filter dari URL
 $filterStatus = isset($_GET['filter']) ? $_GET['filter'] : '';
@@ -104,5 +153,3 @@ if ($filterStatus) {
         return $data['status'] === $filterStatus;
     });
 }
-
-?>

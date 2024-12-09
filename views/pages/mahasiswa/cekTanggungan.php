@@ -1,6 +1,5 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/dataMahasiswa.php';
 include '../../../models/MahasiswaModel.php';
 ?>
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ include '../../../models/MahasiswaModel.php';
             class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
               <h2 class="fw-bold mb-3">Tanggungan Mahasiswa</h2>
-              <h6 class="op-7 mb-2"><?php echo $nim ?> / <?php echo $nama ?></h6>
+              <h6 class="op-7 mb-2"><?= htmlspecialchars($dataMhs['NIM']) ?> / <?= htmlspecialchars($dataMhs['nama']) ?></h6>
             </div>
           </div>
           <div class="col-md-12">
@@ -106,6 +105,33 @@ include '../../../models/MahasiswaModel.php';
   </div>
   <!-- js -->
   <?php include('js.php') ?>
+  <script>
+    // Tombol Logout dengan ID #logout
+    $("#out").click(function(e) {
+      // SweetAlert untuk konfirmasi
+      swal({
+        title: "Apakah Anda Yakin?",
+        text: "Anda akan log out!",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Cancel",
+            visible: true,
+            className: "btn btn-danger",
+          },
+          confirm: {
+            text: "Yes, log out",
+            className: "btn btn-success",
+          },
+        },
+      }).then((willLogout) => {
+        if (willLogout) {
+          // Redirect ke halaman logout
+          window.location.href = "../../../controllers/logout.php";
+        }
+      });
+    });
+  </script>
   <!-- js -->
 </body>
 

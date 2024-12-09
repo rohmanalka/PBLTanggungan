@@ -1,6 +1,5 @@
 <?php
 include '../../../config/connection.php';
-include '../../../config/dataMahasiswa.php';
 include '../../../models/MahasiswaModel.php';
 ?>
 <!DOCTYPE html>
@@ -11,6 +10,11 @@ include '../../../models/MahasiswaModel.php';
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
   <!-- css -->
   <?php include('css.php') ?>
+  <style>
+    .b {
+      color: white;
+    }
+  </style>
   <!-- css -->
 </head>
 
@@ -32,7 +36,7 @@ include '../../../models/MahasiswaModel.php';
             class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
               <h2 class="fw-bold mb-3">Upload Berkas</h2>
-              <h6 class="op-7 mb-2"><?php echo $nim ?> / <?php echo $nama ?></h6>
+              <h6 class="op-7 mb-2"><?= htmlspecialchars($dataMhs['NIM']) ?> / <?= htmlspecialchars($dataMhs['nama']) ?></h6>
             </div>
           </div>
           <div class="col-md-12">
@@ -80,7 +84,7 @@ include '../../../models/MahasiswaModel.php';
                                 <span class="badge badge-success">Terpenuhi</span>
                               <?php else: ?>
                                 <!-- Button untuk membuka modal upload -->
-                                <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target='#uploadModal<?= $data['id_tanggungan']; ?>'>
+                                <button type="button" class="b btn-primary" data-bs-toggle="modal" data-bs-target='#uploadModal<?= $data['id_tanggungan']; ?>'>
                                   Upload
                                 </button>
 
@@ -93,7 +97,7 @@ include '../../../models/MahasiswaModel.php';
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                        <form action="../../../models/UploadModel.php" method="post" enctype="multipart/form-data">
+                                        <form action="../../../process/UpBerkasProcess.php" method="post" enctype="multipart/form-data">
                                           <input type="hidden" name="id_tanggungan" value="<?= $data['id_tanggungan']; ?>">
                                           <div class="mb-3">
                                             <label for="fileInput" class="form-label">Pilih Berkas</label>
@@ -126,6 +130,53 @@ include '../../../models/MahasiswaModel.php';
   </div>
   <!-- js -->
   <?php include('js.php') ?>
+  <!-- SweetAlert script to show success or error messages -->
+  <?php if (isset($_GET['message'])): ?>
+    <script>
+      <?php if ($_GET['message'] === 'upload_success'): ?>
+        swal({
+          title: "Upload Berhasil!",
+          text: "Berkas Anda telah berhasil diunggah.",
+          icon: "success",
+          button: "OK",
+        });
+      <?php elseif ($_GET['message'] === 'upload_error'): ?>
+        swal({
+          title: "Upload Gagal!",
+          text: "Terjadi kesalahan saat mengunggah berkas.",
+          icon: "error",
+          button: "OK",
+        });
+      <?php endif; ?>
+    </script>
+  <?php endif; ?>
+
+  <script>
+      $("#out").click(function(e) {
+        // SweetAlert untuk konfirmasi
+        swal({
+          title: "Apakah Anda Yakin?",
+          text: "Anda akan log out!",
+          icon: "warning",
+          buttons: {
+            cancel: {
+              text: "Cancel",
+              visible: true,
+              className: "btn btn-danger",
+            },
+            confirm: {
+              text: "Yes, log out",
+              className: "btn btn-success",
+            },
+          },
+        }).then((willLogout) => {
+          if (willLogout) {
+            // Redirect ke halaman logout
+            window.location.href = "../../../controllers/logout.php";
+          }
+        });
+      });
+  </script>
   <!-- js -->
 </body>
 

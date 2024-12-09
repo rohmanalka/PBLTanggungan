@@ -1,6 +1,6 @@
 <?php
-$servername = "SARIA-FAUZANI";
-$database = "DBSiBeta";
+$servername = "ALKAUTSAR";
+$database = "DBSiBeTa";
 $username = "sa";
 $password = "BebasTanggungan";
 

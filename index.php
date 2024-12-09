@@ -34,17 +34,6 @@ if (isset($_GET['error'])) {
 <body>
 
     <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form>
-                <h1>Contact Us!</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                </div>
-                <p>Admin Rohman Al-Kautsar</p>
-
-            </form>
-        </div>
         <div class="form-container sign-in">
             <form action="controllers/loginController.php" method="post">
                 <img src="assets/img/brand.png">
@@ -66,13 +55,13 @@ if (isset($_GET['error'])) {
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>About Us</h1>
-                    <p>Sistem Informasi Bebas Tanggungan (SIBT) adalah sistem yang dirancang untuk mengelola dan memverifikasi status tanggungan seseorang, baik dalam konteks administrasi pemerintah maupun keuangan.</p>
+                    <p>Sistem Informasi Bebas Tanggungan (SimasBeTa) adalah sistem yang dirancang untuk mengelola dan memverifikasi status tanggungan Mahasiswa di Polinema.</p>
                     <button class="hidden" id="login">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Hello, Welcome Back</h1>
-                    <p>Klik Lanjut untuk Mengetahui Selengkapnya...</p>
-                    <button class="hidden" id="register">Lanjut</button>
+                    <p>Ketahui lebih lanjut tentang SimasBeTa....</p>
+                    <button class="hidden" id="register">About Us</button>
                 </div>
             </div>
         </div>
