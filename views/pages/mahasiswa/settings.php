@@ -1,18 +1,7 @@
 <?php
 include '../../../config/connection.php';
 include '../../../models/MahasiswaModel.php';
-include '../../../models/setMhsModel.php'
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta content="width=device-width, initi<?php
-include '../../../config/connection.php';
-include '../../../config/dataMahasiswa.php';
-include '../../../models/MahasiswaModel.php';
+include '../../../models/setMhsModel.php';
 
 $id_user = $_SESSION['id_user'] ?? null; 
 if (!$id_user) {
