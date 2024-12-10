@@ -146,9 +146,14 @@ class AdminModel
         return $data;
     }
 }
+// Buat instance dari kelas Database
+$db = new connection();
+$conn = $db->getConnection();
+
 session_start();
+
 if (!isset($_SESSION['role'])) {
-    header("Location: ../index.php");
+    header("Location: ../../../index.php");
     exit();
 }
 

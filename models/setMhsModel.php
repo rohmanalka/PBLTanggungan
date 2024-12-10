@@ -1,5 +1,5 @@
 <?php
-include '../../../config/connection.php';
+require_once '../../../config/connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ambil data dari form
