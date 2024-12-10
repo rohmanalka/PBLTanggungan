@@ -1,5 +1,5 @@
 <?php
-include '../../../config/connection.php';
+require_once '../../../config/connection.php';
 include '../../../models/AdminModel.php';
 include '../../../models/setAdminModel.php';
 ?>
@@ -80,11 +80,11 @@ include '../../../models/setAdminModel.php';
                                                     </button>
 
                                                     <!-- Form Hapus dengan ikon -->
-                                                    <form method="post" style="display:inline;">
+                                                    <form action="../../../process/CRUDProcess.php" method="post" style="display:inline;">
                                                         <input type="hidden" name="username" value="<?= htmlspecialchars($user['username']) ?>" />
-                                                        <input type="hidden" name="action" value="delete" />
+                                                        <input type="hidden" name="action" value="deleteuser" />
                                                         <button type="submit" class="btn-danger">
-                                                            <i class="fa fa-trash text-white"></i> <!-- Ikon hapus -->
+                                                            <i class="fa fa-trash text-white"></i> <!-- Icon delete -->
                                                         </button>
                                                     </form>
                                                 </td>
@@ -99,8 +99,8 @@ include '../../../models/setAdminModel.php';
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="" method="post" enctype="multipart/form-data">
-                                                                <input type="hidden" name="action" value="update" />
+                                                            <form action="../../../process/CRUDProcess.php" method="POST" enctype="multipart/form-data">
+                                                                <input type="hidden" name="action" value="updateuser" />
                                                                 <input type="hidden" name="username" value="<?= htmlspecialchars($user['username']) ?>" />
 
                                                                 <div class="mb-3">
@@ -108,10 +108,9 @@ include '../../../models/setAdminModel.php';
                                                                     <input type="text" class="form-control" id="username" name="username" value="<?= htmlspecialchars($user['username']) ?>" required />
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="password" class="form-label">Password (Kosongkan jika tidak ingin mengubah)</label>
+                                                                    <label for="password" class="form-label">Password (Leave blank if not changing)</label>
                                                                     <input type="password" class="form-control" id="password" name="password" />
                                                                 </div>
-
                                                                 <div class="mb-3">
                                                                     <label for="role" class="form-label">Role</label>
                                                                     <select class="form-select" id="role" name="role" required>
@@ -121,10 +120,12 @@ include '../../../models/setAdminModel.php';
                                                                 </div>
                                                                 <button type="submit" class="btn btn-primary">Simpan</button>
                                                             </form>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
@@ -143,15 +144,15 @@ include '../../../models/setAdminModel.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="../../../process/CRUDadmin.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="action" value="create" />
+                            <form action="../../../process/CRUDProcess.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="action" value="tambah" />
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username</label>
                                     <input type="text" class="form-control" id="username" name="username" required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="text" class="form-control" id="password" name="password" required />
+                                    <input type="password" class="form-control" id="password" name="password" required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="role" class="form-label">Role</label>
@@ -166,8 +167,6 @@ include '../../../models/setAdminModel.php';
                     </div>
                 </div>
             </div>
-
-
             <!-- Footer -->
             <?php include('../../layouts/footer.php') ?>
         </div>
@@ -197,7 +196,7 @@ include '../../../models/setAdminModel.php';
             }).then((willLogout) => {
                 if (willLogout) {
                     // Redirect ke halaman logout
-                    window.location.href = "../../../controllers/logout.php";
+                    window.location.href = "../../../process/logoutProcess.php";
                 }
             });
         });

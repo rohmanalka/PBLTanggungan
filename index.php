@@ -35,7 +35,7 @@ if (isset($_GET['error'])) {
 
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form action="controllers/loginController.php" method="post">
+            <form action="process/loginProcess.php" method="post">
                 <img src="assets/img/brand.png">
                 <p>Login to access your account</p>
                 <div class="alert alert-danger" role="alert">

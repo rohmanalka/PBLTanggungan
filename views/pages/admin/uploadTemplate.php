@@ -1,5 +1,5 @@
 <?php
-include '../../../config/connection.php';
+require_once '../../../config/connection.php';
 include '../../../models/AdminModel.php';
 include '../../../process/UpTemplateProcess.php';
 ?>
@@ -69,8 +69,8 @@ include '../../../process/UpTemplateProcess.php';
                           <td><?= htmlspecialchars($data['jenis_tanggungan']) ?></td>
                           <td><?= htmlspecialchars($data['keterangan']) ?></td>
                           <td>
-                            <button type="button" class="b btn-danger" data-bs-toggle="modal" data-bs-target='#uploadModal<?= $data['id_jnsTanggungan']; ?>'>
-                              Edit File
+                            <button type="button" class="b btn-info" data-bs-toggle="modal" data-bs-target='#previewModal<?= $data['id_jnsTanggungan']; ?>'>
+                              Preview
                             </button>
                             <button type="button" class="b btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal<?= $data['id_jnsTanggungan'] ?>">
                               Upload
@@ -78,6 +78,40 @@ include '../../../process/UpTemplateProcess.php';
                           </td>
                         </tr>
 
+                        <!-- Modal Preview -->
+                        <div class="modal fade" id="previewModal<?= $data['id_jnsTanggungan'] ?>" tabindex="-1" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Preview File</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <?php if (!empty($data['template'])): ?>
+                                  <?php $fileType = strtolower(pathinfo($data['template'], PATHINFO_EXTENSION)); ?>
+                                  <?php
+                                  // Add a timestamp to the file URL to prevent caching
+                                  $fileUrl = "../../../upload/template/" . htmlspecialchars($data['template']);
+                                  $fileUrlWithTimestamp = $fileUrl . "?v=" . time();  // Add timestamp
+                                  ?>
+                                  <?php if ($fileType === 'pdf'): ?>
+                                    <iframe src="<?= $fileUrlWithTimestamp ?>" width="100%" height="400px"></iframe>
+                                  <?php else: ?>
+                                    <img src="<?= $fileUrlWithTimestamp ?>" alt="File Preview" class="img-fluid">
+                                  <?php endif; ?>
+                                <?php else: ?>
+                                  <p>Tidak ada file untuk ditampilkan.</p>
+                                <?php endif; ?>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal<?= $data['id_jnsTanggungan'] ?>">
+                                  Edit File
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <!-- Modal Edit -->
                         <div class="modal fade" id="editModal<?= $data['id_jnsTanggungan'] ?>" tabindex="-1" aria-hidden="true">
                           <div class="modal-dialog">
@@ -87,7 +121,7 @@ include '../../../process/UpTemplateProcess.php';
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                                <form action="../../../models/editFileModel.php" method="post" enctype="multipart/form-data">
+                                <form action="uploadTemplate.php" method="post" enctype="multipart/form-data">
                                   <input type="hidden" name="id_jnsTanggungan" value="<?= $data['id_jnsTanggungan']; ?>">
                                   <div class="mb-3">
                                     <label for="fileInput" class="form-label">Pilih File Baru</label>
@@ -99,6 +133,7 @@ include '../../../process/UpTemplateProcess.php';
                             </div>
                           </div>
                         </div>
+
 
                         <!-- Modal Upload -->
                         <div class="modal fade" id="uploadModal<?= $data['id_jnsTanggungan']; ?>" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -161,7 +196,7 @@ include '../../../process/UpTemplateProcess.php';
       }).then((willLogout) => {
         if (willLogout) {
           // Redirect ke halaman logout
-          window.location.href = "../../../controllers/logout.php";
+          window.location.href = "../../../process/logoutProcess.php";
         }
       });
     });

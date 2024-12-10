@@ -114,6 +114,36 @@ class MahasiswaModel
         // Jika jumlah belum terpenuhi adalah 0, maka semua terpenuhi
         return $row['belum_terpenuhi'] === 0;
     }
+
+    public function getDataJenisTanggungan()
+    {
+        // SQL query to fetch all data from the Tanggungan table
+        $sql = "
+            SELECT
+                id_jnsTanggungan,
+                jenis_tanggungan,
+                keterangan,
+                template
+            FROM
+                JenisTanggungan";
+
+        // Execute the query
+        $stmt = sqlsrv_query($this->db, $sql);
+
+        // Check if the query was successful
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));  // If failed, output the error
+        }
+
+        // Fetch the data from the result set
+        $data = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $data[] = $row;  // Append each row to the data array
+        }
+
+        sqlsrv_free_stmt($stmt);  // Free the statement to release resources
+        return $data;  // Return the fetched data
+    }
 }
 
 $db = new connection();

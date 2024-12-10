@@ -2,7 +2,7 @@
 require_once '../../../config/connection.php';
 include '../../../models/AdminModel.php';
 
-$id_jnsTanggungan = [1, 2, 3, 4, 5];
+$id_jnsTanggungan = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 $pendingTanggungan = $model->getPendingTanggungan($id_jnsTanggungan);
 $uploadDir = "../../../upload/berkasMhs/"
 ?>
@@ -220,7 +220,7 @@ $uploadDir = "../../../upload/berkasMhs/"
       }).then((willLogout) => {
         if (willLogout) {
           // Redirect ke halaman logout
-          window.location.href = "../../../controllers/logout.php";
+          window.location.href = "../../../process/logoutProcess.php";
         }
       });
     });

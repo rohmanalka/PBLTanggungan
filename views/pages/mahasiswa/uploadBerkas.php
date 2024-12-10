@@ -1,6 +1,8 @@
 <?php
 require_once '../../../config/connection.php';
 include '../../../models/MahasiswaModel.php';
+
+$template = $model->getDataJenisTanggungan();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,12 +47,54 @@ include '../../../models/MahasiswaModel.php';
                 <div class="card-head-row card-tools-still-right">
                   <div class="card-title">Silahkan upload berkas tanggungan anda</div>
                   <div class="card-tools">
-                    <a href="#" class="btn btn-black btn-border btn-round btn-sm me-2" style="width: 150px;">
+                    <!-- Button to trigger the download modal -->
+                    <button class="btn btn-black btn-border btn-round btn-sm me-2" data-bs-toggle="modal" data-bs-target="#downloadTemplateModal">
                       <span class="btn-label">
-                        <i class="fa fa-pencil"></i>
+                        <i class="fa fa-download"></i>
                       </span>
-                      Search...
-                    </a>
+                      Unduh Template
+                    </button>
+
+                    <!-- Modal for downloading the template -->
+                    <div class="modal fade" id="downloadTemplateModal" tabindex="-1" aria-labelledby="downloadTemplateModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="downloadTemplateModalLabel">Unduh Template</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <form id="templateForm">
+                              <div class="mb-3">
+                                <label for="jenisTanggunganDropdown" class="form-label">Pilih Jenis Tanggungan</label>
+                                <select class="form-select" id="jenisTanggunganDropdown" name="jenis_tanggungan" required>
+                                  <option value="">Pilih Jenis Tanggungan</option>
+                                  <?php foreach ($template as $row): ?>
+                                    <option value="<?= htmlspecialchars($row['id_jnsTanggungan']); ?>">
+                                      <?= htmlspecialchars($row['jenis_tanggungan']); ?>
+                                    </option>
+                                  <?php endforeach; ?>
+                                </select>
+                              </div>
+
+                              <!-- Template link will appear here based on selected jenis_tanggungan -->
+                              <div id="templateLinkContainer" class="mt-3" style="display: none;">
+                                <p>Anda dapat mengunduh template untuk upload berkas di bawah ini:</p>
+                                <a id="downloadTemplateLink" href="#" class="btn btn-primary btn-block" download>
+                                  <i class="fa fa-download"></i> Unduh Template
+                                </a>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
                   </div>
                 </div>
               </div>
@@ -63,7 +107,6 @@ include '../../../models/MahasiswaModel.php';
                       <thead class="thead-light">
                         <tr>
                           <th scope="col">No</th>
-                          <th scope="col">ID</th>
                           <th scope="col">Tanggungan</th>
                           <th scope="col">Keterangan</th>
                           <th scope="col">Aksi</th>
@@ -76,7 +119,7 @@ include '../../../models/MahasiswaModel.php';
                         foreach ($tanggunganData as $data): ?>
                           <tr>
                             <th><?= $no++; ?></th>
-                            <td><?= htmlspecialchars($data['id_tanggungan']); ?></td>
+                            <td style="display: none;"><?= htmlspecialchars($data['id_tanggungan']); ?></td>
                             <td><?= htmlspecialchars($data['jenis_tanggungan']); ?></td>
                             <td><?= htmlspecialchars($data['keterangan']); ?></td>
                             <td>
@@ -152,30 +195,53 @@ include '../../../models/MahasiswaModel.php';
   <?php endif; ?>
 
   <script>
-      $("#out").click(function(e) {
-        // SweetAlert untuk konfirmasi
-        swal({
-          title: "Apakah Anda Yakin?",
-          text: "Anda akan log out!",
-          icon: "warning",
-          buttons: {
-            cancel: {
-              text: "Cancel",
-              visible: true,
-              className: "btn btn-danger",
-            },
-            confirm: {
-              text: "Yes, log out",
-              className: "btn btn-success",
-            },
+    $("#out").click(function(e) {
+      // SweetAlert untuk konfirmasi
+      swal({
+        title: "Apakah Anda Yakin?",
+        text: "Anda akan log out!",
+        icon: "warning",
+        buttons: {
+          cancel: {
+            text: "Cancel",
+            visible: true,
+            className: "btn btn-danger",
           },
-        }).then((willLogout) => {
-          if (willLogout) {
-            // Redirect ke halaman logout
-            window.location.href = "../../../controllers/logout.php";
-          }
-        });
+          confirm: {
+            text: "Yes, log out",
+            className: "btn btn-success",
+          },
+        },
+      }).then((willLogout) => {
+        if (willLogout) {
+          // Redirect ke halaman logout
+          window.location.href = "../../../process/logoutProcess.php";
+        }
       });
+    });
+
+    document.getElementById('jenisTanggunganDropdown').addEventListener('change', function() {
+      var selectedId = this.value;
+      var templateContainer = document.getElementById('templateLinkContainer');
+      var downloadLink = document.getElementById('downloadTemplateLink');
+
+      // Hide the template link container initially
+      templateContainer.style.display = 'none';
+
+      // If a valid ID is selected, find the corresponding template
+      if (selectedId) {
+        var template = <?php echo json_encode($template); ?>;
+        var selectedTemplate = template.find(function(item) {
+          return item.id_jnsTanggungan == selectedId;
+        });
+
+        // If the selected type has a template, show the download link
+        if (selectedTemplate && selectedTemplate.template) {
+          downloadLink.href = '../../../upload/template/' + selectedTemplate.template;
+          templateContainer.style.display = 'block'; // Show the link container
+        }
+      }
+    });
   </script>
   <!-- js -->
 </body>

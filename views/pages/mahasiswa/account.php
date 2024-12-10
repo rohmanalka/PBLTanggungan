@@ -229,7 +229,7 @@ include '../../../models/MahasiswaModel.php';
       }).then((willLogout) => {
         if (willLogout) {
           // Redirect ke halaman logout
-          window.location.href = "../../../controllers/logout.php";
+          window.location.href = "../../../process/logoutProcess.php";
         }
       });
     });

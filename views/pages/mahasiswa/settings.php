@@ -1,7 +1,7 @@
 <?php
 require_once '../../../config/connection.php';
 include '../../../models/MahasiswaModel.php';
-include '../../../process/UbahPassProccess.php'
+include '../../../process/UbahPassProcess.php'
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +97,7 @@ include '../../../process/UbahPassProccess.php'
       }).then((willLogout) => {
         if (willLogout) {
           // Redirect ke halaman logout
-          window.location.href = "../../../controllers/logout.php";
+          window.location.href = "../../../process/logoutProcess.php";
         }
       });
     });

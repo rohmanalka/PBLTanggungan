@@ -13,7 +13,7 @@
       }
 
       // Periksa ukuran file
-      var maxSize = 5 * 1024 * 1024; // 5MB
+      var maxSize = 10 * 1024 * 1024; // 5MB
       if (file.size > maxSize) {
         alert("Sorry, the file is too large. Maximum allowed size is 5MB.");
         event.preventDefault();

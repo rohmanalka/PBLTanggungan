@@ -83,7 +83,7 @@ include '../../../models/setAdminModel.php';
                           </button>
 
                           <!-- Form Hapus dengan ikon -->
-                          <form id="deleteForm<?= $index + 1 ?>" action="../../../process/CRUDadmin.php" method="post" style="display:inline;">
+                          <form id="deleteForm<?= $index + 1 ?>" action="../../../process/CRUDProcess.php" method="post" style="display:inline;">
                             <input type="hidden" name="nim" value="<?= htmlspecialchars($mahasiswa['NIM']) ?>" />
                             <input type="hidden" name="action" value="delete" />
                             <button type="button" class="btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $index + 1 ?>">
@@ -121,7 +121,7 @@ include '../../../models/setAdminModel.php';
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <form action="../../../process/CRUDadmin.php" method="post" enctype="multipart/form-data">
+                              <form action="../../../process/CRUDProcess.php" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="action" value="update" />
                                 <input type="hidden" name="nim" value="<?= htmlspecialchars($mahasiswa['NIM']) ?>" />
                                 <input type="hidden" name="existing_foto" value="<?= htmlspecialchars($mahasiswa['fotoProfil']) ?>" />
@@ -146,10 +146,6 @@ include '../../../models/setAdminModel.php';
                                   <label for="angkatan" class="form-label">Angkatan</label>
                                   <input type="text" class="form-control" id="angkatan" name="angkatan" value="<?= htmlspecialchars($mahasiswa['angkatan']) ?>" required />
                                 </div>
-                                <div class="mb-3">
-                                  <label for="foto_profil" class="form-label">Foto Profil</label>
-                                  <input type="file" class="form-control" id="foto_profil" name="foto_profil" value="<?= htmlspecialchars($mahasiswa['fotoProfil']) ?>" />
-                                </div>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                               </form>
                             </div>
@@ -161,37 +157,18 @@ include '../../../models/setAdminModel.php';
                         <div class="modal-dialog modal-lg">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="addModalLabel">Tambah Data Mahasiswa dan User</h5>
+                              <h5 class="modal-title" id="addModalLabel">Tambah Data Mahasiswa</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <!-- Container untuk menata kolom kiri (User) dan kanan (Mahasiswa) -->
+                              <!-- Container untuk menata kolom untuk Mahasiswa -->
                               <div class="row">
-                                <!-- Kolom Kiri - Form User -->
-                                <div class="col-md-6">
-                                  <h5 class="mb-3">Data User</h5>
-                                  <form action="../../../process/CRUDadmin.php" method="POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="action" value="create" />
-                                    <div class="mb-3">
-                                      <label for="username" class="form-label">Username</label>
-                                      <input type="text" class="form-control" id="username" name="username" required />
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="password" class="form-label">Password</label>
-                                      <input type="password" class="form-control" id="password" name="password" required />
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="role" class="form-label">role</label>
-                                      <input type="role" class="form-control" id="role" name="role" required />
-                                    </div>
-                                  </form>
-                                </div>
-
                                 <!-- Kolom Kanan - Form Mahasiswa -->
                                 <div class="col-md-6">
                                   <h5 class="mb-3">Data Mahasiswa</h5>
-                                  <form action="../../../process/CRUDadmin.php" method="POST" enctype="multipart/form-data">
+                                  <form action="../../../process/CRUDProcess.php" method="POST" enctype="multipart/form-data">
                                     <input type="hidden" name="action" value="create" />
+
                                     <div class="mb-3">
                                       <label for="nama" class="form-label">Nama Lengkap</label>
                                       <input type="text" class="form-control" id="nama" name="nama" required />
@@ -212,20 +189,22 @@ include '../../../models/setAdminModel.php';
                                       <label for="angkatan" class="form-label">Angkatan</label>
                                       <input type="text" class="form-control" id="angkatan" name="angkatan" required />
                                     </div>
+
+                                    <!-- Dropdown untuk memilih id_user -->
                                     <div class="mb-3">
-                                      <label for="foto_profil" class="form-label">Foto Profil</label>
-                                      <input type="file" class="form-control" id="foto_profil" name="foto_profil" />
+                                      <label for="id_user" class="form-label">Pilih User</label>
+                                      <select class="form-control" id="id_user" name="id_user" required>
+                                        <option value="" disabled selected>Pilih User yang sesuai</option>
+                                        <?php foreach ($dataUser as $user) : ?>
+                                          <option value="<?= htmlspecialchars($user['id_user']) ?>"><?= htmlspecialchars($user['username']) ?> (<?= htmlspecialchars($user['role']) ?>)</option>
+                                        <?php endforeach; ?>
+                                      </select>
                                     </div>
+
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                   </form>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    <?php endforeach; ?>
+                              <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
@@ -262,7 +241,7 @@ include '../../../models/setAdminModel.php';
       }).then((willLogout) => {
         if (willLogout) {
           // Redirect ke halaman logout
-          window.location.href = "../../../controllers/logout.php";
+          window.location.href = "../../../process/logoutProcess.php";
         }
       });
     });
