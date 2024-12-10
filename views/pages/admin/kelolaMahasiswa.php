@@ -1,5 +1,5 @@
 <?php
-include '../../../config/connection.php';
+require_once '../../../config/connection.php';
 include '../../../models/AdminModel.php';
 include '../../../models/setAdminModel.php';
 ?>
@@ -39,17 +39,7 @@ include '../../../models/setAdminModel.php';
               <h6 class="op-7 mb-2">SimasBeta / Others / Settings / Kelola Mahasiswa</h6>
             </div>
           </div>
-          <!-- Message Display Section -->
-          <?php if (isset($_GET['message'])): ?>
-            <div class="alert alert-dismissible fade show" role="alert">
-              <?php if ($_GET['message'] === 'success'): ?>
-                <div class="alert alert-success">Data Mahasiswa berhasil dihapus!</div>
-              <?php elseif ($_GET['message'] === 'error'): ?>
-                <div class="alert alert-danger">Terjadi kesalahan saat menghapus data Mahasiswa.</div>
-              <?php endif; ?>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          <?php endif; ?>
+
           <div class="col-md-12">
             <div class="card card-round">
               <div class="card-header">

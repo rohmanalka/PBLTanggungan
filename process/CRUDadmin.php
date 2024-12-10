@@ -1,6 +1,12 @@
 <?php
-include '../config/connection.php';
+require_once '../config/connection.php';
 include '../models/setAdminModel.php';
+
+// Membuat objek koneksi
+$db = new connection();
+
+// Mendapatkan koneksi aktif
+$conn = $db->getConnection();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Fungsi untuk tambah data mahasiswa

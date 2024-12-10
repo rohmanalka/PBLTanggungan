@@ -89,7 +89,7 @@
                                     <div class="u-text">
                                         <h4><?php echo $panggilan ?></h4>
                                         <p class="text-muted"><?= htmlspecialchars($dataMhs['NIM']) ?></p>
-                                        <a href="account.php" class="btn btn-xs btn-secondary btn-sm">Change Password</a>
+                                        <a href="settings.php" class="btn btn-xs btn-secondary btn-sm">Change Password</a>
                                     </div>
                                 </div>
                             </li>

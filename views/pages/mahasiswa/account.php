@@ -2,6 +2,7 @@
 require_once '../../../config/connection.php';
 include '../../../models/MahasiswaModel.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -158,12 +159,12 @@ include '../../../models/MahasiswaModel.php';
           </div>
         </div>
       </div>
-
+      <!-- <footer> -->
+      <?php include('../../layouts/footer.php') ?>
+      <!-- <footer> -->
     </div>
-    <!-- <footer> -->
-    <?php include('../../layouts/footer.php') ?>
-    <!-- <footer> -->
   </div>
+
   <!-- js -->
   <?php include('js.php') ?>
   <?php if (isset($_GET['message'])): ?>

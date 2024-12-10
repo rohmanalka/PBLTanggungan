@@ -1,6 +1,11 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include('../config/connection.php');
+    require_once('../config/connection.php');
+    // Membuat objek koneksi
+    $db = new connection();
+
+    // Mendapatkan koneksi aktif
+    $conn = $db->getConnection();
 
     $id_tanggungan = $_POST['id_tanggungan'];
     $action = $_POST['action'];
@@ -33,4 +38,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     sqlsrv_close($conn);
     exit;
 }
-?>

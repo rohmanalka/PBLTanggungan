@@ -1,7 +1,7 @@
 <?php
 class connection {
     private $serverName = "ALKAUTSAR";
-    private $database = "DBSiBeTa";
+    private $database = "DBBeTa";
     private $username = "sa";
     private $password = "BebasTanggungan";
     private $conn;

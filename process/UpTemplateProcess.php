@@ -28,7 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id_jnsTanggungan = $_POST['id_jnsTanggungan'];
 
             if (move_uploaded_file($fileTmp, $filePath)) {
-                include('../../../config/connection.php');
+                require_once '../../../config/connection.php';
+                // Membuat objek koneksi
+                $db = new connection();
+
+                // Mendapatkan koneksi aktif
+                $conn = $db->getConnection();
 
                 $sql = "UPDATE JenisTanggungan 
                         SET template = ?

@@ -116,6 +116,11 @@ class setAdminModel
     }
 }
 
+// Membuat objek koneksi
+$db = new connection();
+// Mendapatkan koneksi aktif
+$conn = $db->getConnection();
+
 $model = new setAdminModel($conn);
 $datamahasiswa = $model->getAllMahasiswa($conn);
 $dataUser = $model->getUsers($conn);

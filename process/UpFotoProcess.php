@@ -23,8 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Pindahkan file ke folder upload
             if (move_uploaded_file($fileTmp, $filePath)) {
                 // Koneksi ke database
-                include('../config/connection.php');
+                require_once '../config/connection.php';
+                // Membuat objek koneksi
+                $db = new connection();
 
+                // Mendapatkan koneksi aktif
+                $conn = $db->getConnection();
                 // Query untuk menyimpan nama file dan memperbarui foto profil
                 $sql = "UPDATE Mahasiswa 
                         SET fotoProfil = ?
