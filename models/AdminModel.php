@@ -145,6 +145,50 @@ class AdminModel
         sqlsrv_free_stmt($stmt);
         return $data;
     }
+
+    public function getAllTanggunganByStatus($status = null)
+    {
+        // Base query
+        $sql = "
+        SELECT
+            mhs.nama AS nama_mahasiswa,
+            mhs.NIM,
+            jt.jenis_tanggungan,
+            jt.keterangan,
+            t.id_tanggungan,
+            t.status,
+            t.berkas
+        FROM
+            Mahasiswa mhs
+        INNER JOIN
+            Tanggungan t ON mhs.id_mhs = t.id_mhs
+        INNER JOIN
+            JenisTanggungan jt ON t.id_jnsTanggungan = jt.id_jnsTanggungan";
+
+        // Tambahkan filter status jika $status tidak null
+        $params = [];
+        if ($status !== null) {
+            $sql .= " WHERE t.status = ?";
+            $params[] = $status;
+        }
+
+        // Eksekusi query
+        $stmt = sqlsrv_query($this->db, $sql, $params);
+
+        // Periksa apakah query berhasil
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        // Ambil data dari hasil query
+        $data = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $data[] = $row;
+        }
+
+        sqlsrv_free_stmt($stmt); // Bebaskan resource statement
+        return $data; // Kembalikan data
+    }
 }
 // Buat instance dari kelas Database
 $db = new connection();
@@ -174,3 +218,12 @@ $tanggungan = $model->getDataJenisTanggungan();
 $pendingCount = $model->countPendingTanggungan();
 $pendingTanggungan = $model->getPendingTanggungan();
 $dataAdmin = $model->getAdminById($id_admin);
+
+$tanggunganTerpenuhi = $model->getAllTanggunganByStatus('terpenuhi');
+$tanggunganBelumTerpenuhi = $model->getAllTanggunganByStatus('pending');
+$allTanggungan = $model->getAllTanggunganByStatus();    
+
+// Menghitung jumlah setiap status
+$jumlahTerpenuhi = count($tanggunganTerpenuhi);
+$jumlahBelumTerpenuhi = count($tanggunganBelumTerpenuhi);
+$totalTanggungan = count($allTanggungan);

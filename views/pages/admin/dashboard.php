@@ -52,7 +52,7 @@ $uploadDir = "../../../upload/berkasMhs/"
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Jumlah Tanggungan Mahasiswa</p>
-                        <h4 class="card-title">10</h4>
+                        <h4 class="card-title"><?= $totalTanggungan ?></h4>
                       </div>
                     </div>
                   </div>
@@ -72,7 +72,7 @@ $uploadDir = "../../../upload/berkasMhs/"
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Sudah Terverifikasi</p>
-                        <h4 class="card-title">14</h4>
+                        <h4 class="card-title"><?= $jumlahTerpenuhi ?></h4>
                       </div>
                     </div>
                   </div>
@@ -92,7 +92,7 @@ $uploadDir = "../../../upload/berkasMhs/"
                     <div class="col col-stats ms-3 ms-sm-0">
                       <div class="numbers">
                         <p class="card-category">Belum Terverifikasi</p>
-                        <h4 class="card-title">6</h4>
+                        <h4 class="card-title"><?= $jumlahBelumTerpenuhi ?></h4>
                       </div>
                     </div>
                   </div>
