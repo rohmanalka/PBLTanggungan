@@ -34,8 +34,7 @@ $template = $model->getDataJenisTanggungan();
       <!-- <main> -->
       <div class="container">
         <div class="page-inner">
-          <div
-            class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+          <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
             <div>
               <h2 class="fw-bold mb-3">Upload Berkas</h2>
               <h6 class="op-7 mb-2"><?= htmlspecialchars($dataMhs['NIM']) ?> / <?= htmlspecialchars($dataMhs['nama']) ?></h6>
@@ -69,7 +68,7 @@ $template = $model->getDataJenisTanggungan();
                                 <label for="jenisTanggunganDropdown" class="form-label">Pilih Jenis Tanggungan</label>
                                 <select class="form-select" id="jenisTanggunganDropdown" name="jenis_tanggungan" required>
                                   <option value="">Pilih Jenis Tanggungan</option>
-                                  <?php foreach ($template as $row): ?>
+                                  <?php foreach ($template as $row) : ?>
                                     <option value="<?= htmlspecialchars($row['id_jnsTanggungan']); ?>">
                                       <?= htmlspecialchars($row['jenis_tanggungan']); ?>
                                     </option>
@@ -100,9 +99,9 @@ $template = $model->getDataJenisTanggungan();
               </div>
               <div class="card-body p-0">
                 <div class="table-responsive">
-                  <?php if (empty($tanggunganData)): ?>
+                  <?php if (empty($tanggunganData)) : ?>
                     <div class="alert alert-info">Tidak ada tanggungan untuk mahasiswa ini.</div>
-                  <?php else: ?>
+                  <?php else : ?>
                     <table class="table align-items-center mb-0">
                       <thead class="thead-light">
                         <tr>
@@ -116,20 +115,62 @@ $template = $model->getDataJenisTanggungan();
                         <!-- Projects table -->
                         <?php
                         $no = 1;
-                        foreach ($tanggunganData as $data): ?>
+                        foreach ($tanggunganData as $data) : ?>
                           <tr>
                             <th><?= $no++; ?></th>
                             <td style="display: none;"><?= htmlspecialchars($data['id_tanggungan']); ?></td>
                             <td><?= htmlspecialchars($data['jenis_tanggungan']); ?></td>
                             <td><?= htmlspecialchars($data['keterangan']); ?></td>
                             <td>
-                              <?php if ($data['status'] === 'terpenuhi'): ?>
+                              <?php if ($data['status'] === 'terpenuhi') : ?>
                                 <span class="badge badge-success">Terpenuhi</span>
-                              <?php else: ?>
+                              <?php else : ?>
                                 <!-- Button untuk membuka modal upload -->
+                                <button type="button" class="b btn-info" data-bs-toggle="modal" data-bs-target='#previewModal<?= $data['id_tanggungan']; ?>'>
+                                  Preview
+                                </button>
                                 <button type="button" class="b btn-primary" data-bs-toggle="modal" data-bs-target='#uploadModal<?= $data['id_tanggungan']; ?>'>
                                   Upload
                                 </button>
+
+                                <!-- Modal Preview -->
+                                <div class="modal fade" id="previewModal<?= $data['id_tanggungan']; ?>" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title">Preview File</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <?php
+                                        // Cek apakah file sudah diupload
+                                        if (!empty($data['berkas'])) :
+                                          $fileUrl = "../../../upload/berkasMhs/" . htmlspecialchars($data['berkas']);
+                                          $fileType = strtolower(pathinfo($data['berkas'], PATHINFO_EXTENSION));
+                                        ?>
+                                          <!-- Tampilkan file berdasarkan jenis file -->
+                                          <?php if ($fileType === 'pdf') : ?>
+                                            <iframe src="<?= $fileUrl ?>" width="100%" height="400px"></iframe>
+                                          <?php elseif (in_array($fileType, ['jpg', 'jpeg', 'png', 'gif'])) : ?>
+                                            <img src="<?= $fileUrl ?>" alt="File Preview" class="img-fluid">
+                                          <?php else : ?>
+                                            <p>Tipe file tidak dapat dipreview.</p>
+                                          <?php endif; ?>
+                                        <?php else : ?>
+                                          <p>Belum ada file yang diupload.</p>
+                                        <?php endif; ?>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <?php if (!empty($data['berkas'])) : ?>
+                                          <a href="<?= $fileUrl ?>" class="btn btn-primary" download>
+                                            <i class="fa fa-download"></i> Unduh File
+                                          </a>
+                                        <?php endif; ?>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
 
                                 <!-- Modal untuk upload file -->
                                 <div class="modal fade" id="uploadModal<?= $data['id_tanggungan']; ?>" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -174,16 +215,16 @@ $template = $model->getDataJenisTanggungan();
   <!-- js -->
   <?php include('js.php') ?>
   <!-- SweetAlert script to show success or error messages -->
-  <?php if (isset($_GET['message'])): ?>
+  <?php if (isset($_GET['message'])) : ?>
     <script>
-      <?php if ($_GET['message'] === 'upload_success'): ?>
+      <?php if ($_GET['message'] === 'upload_success') : ?>
         swal({
           title: "Upload Berhasil!",
           text: "Berkas Anda telah berhasil diunggah.",
           icon: "success",
           button: "OK",
         });
-      <?php elseif ($_GET['message'] === 'upload_error'): ?>
+      <?php elseif ($_GET['message'] === 'upload_error') : ?>
         swal({
           title: "Upload Gagal!",
           text: "Terjadi kesalahan saat mengunggah berkas.",
