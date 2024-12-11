@@ -105,14 +105,6 @@ $uploadDir = "../../../upload/berkasMhs/"
               <div class="card-header">
                 <div class="card-head-row card-tools-still-right">
                   <div class="card-title">Berikut berkas tanggungan akademik yang harus diverifikasi</div>
-                  <div class="card-tools">
-                    <a href="#" class="btn btn-black btn-border btn-round btn-sm me-2" style="width: 150px;">
-                      <span class="btn-label">
-                        <i class="fa fa-pencil"></i>
-                      </span>
-                      Search...
-                    </a>
-                  </div>
                 </div>
               </div>
               <div class="card-body p-0">
