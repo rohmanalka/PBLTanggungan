@@ -105,6 +105,14 @@ $uploadDir = "../../../upload/berkasMhs/"
               <div class="card-header">
                 <div class="card-head-row card-tools-still-right">
                   <div class="card-title">Berikut berkas tanggungan akademik yang harus diverifikasi</div>
+                  <div class="card-tools">
+                    <a href="#" class="btn btn-black btn-border btn-round btn-sm me-2" style="width: 150px;">
+                      <span class="btn-label">
+                        <i class="fa fa-pencil"></i>
+                      </span>
+                      Search...
+                    </a>
+                  </div>
                 </div>
               </div>
               <div class="card-body p-0">
@@ -162,7 +170,7 @@ $uploadDir = "../../../upload/berkasMhs/"
                                     <button type="button" class="btn btn-success" id="approveButton">Verifikasi</button>
                                     <button type="button" class="btn btn-danger" id="rejectButton">Tolak</button>
                                   </form>
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                 </div>
                               </div>
                             </div>

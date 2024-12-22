@@ -58,19 +58,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                     <li class="nav-item <?= $current_page == 'cekTanggungan.php' ? 'active' : '' ?>">
                         <a href="cekTanggungan.php">
                             <i class="fas fa-folder-open"></i>
-                            <p>Cek Tanggungan</p>
-                        </a>
-                    </li>
-                    <li class="nav-item <?= $current_page == 'uploadBerkas.php' ? 'active' : '' ?>">
-                        <a href="uploadBerkas.php">
-                            <i class="fas fa-file-upload"></i>
-                            <p>Upload Berkas</p>
-                        </a>
-                    </li>
-                    <li class="nav-item <?= $current_page == 'cetakBebasTanggungan.php' ? 'active' : '' ?>">
-                        <a href="cetakBebasTanggungan.php">
-                            <i class="fas fa-cloud-download-alt"></i>
-                            <p>Cetak Bebas Tanggungan</p>
+                            <p>Tanggungan Mahasiswa</p>
                         </a>
                     </li>
                     <li class="nav-section">
@@ -136,25 +124,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME']);
                         </span>
                         <h4 class="text-section">OTHERS</h4>
                     </li>
-                    <li class="nav-item <?= in_array($current_page, ['kelolaUser.php', 'kelolaMahasiswa.php']) ? 'active' : '' ?> dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#settingsSubmenu" aria-expanded="false">
+                    <li class="nav-item <?= $current_page == 'kelolaMahasiswa.php' ? 'active' : '' ?>">
+                        <a href="kelolaMahasiswa.php">
                             <i class="fas fa-cogs"></i>
                             <p>Settings</p>
                         </a>
-                        <div id="settingsSubmenu" class="collapse <?= in_array($current_page, ['kelolaUser.php', 'kelolaMahasiswa.php']) ? 'show' : '' ?>">
-                            <ul class="nav flex-column ms-3">
-                                <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'kelolaUser.php' ? 'active' : '' ?>" href="kelolaUser.php">
-                                        Kelola User
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <?= $current_page == 'kelolaMahasiswa.php' ? 'active' : '' ?>" href="kelolaMahasiswa.php">
-                                        Kelola Mahasiswa
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
 
                 <?php } ?>

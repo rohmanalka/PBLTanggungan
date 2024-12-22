@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'prodi' => $_POST['prodi'],
             'angkatan' => $_POST['angkatan'],
             'fotoProfil' => null, // Default jika tidak ada foto
+            'password' => $_POST['password'], // Hash the password
             'id_user' => $_POST['id_user'] // Include id_user here
         ];
 
@@ -27,67 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
     }
-
-    // Fungsi untuk tambah data user
-    if (isset($_POST['action']) && $_POST['action'] === 'tambah') {
-        $username = $_POST['username'];
-        $password = $_POST['password']; // Password input
-        $role = $_POST['role'];
-
-        // Hash the password using PHP's password_hash function
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-        // Call the model function to insert the user into the database
-        $model = new setAdminModel($conn);
-
-        // Call the method to add user and get the id_user
-        $result = $model->createUser($conn, $username, $passwordHash, $role);
-        if ($result) {
-            header("Location: ../views/pages/admin/kelolaUser.php?message=success");
-            exit();
-        } else {
-            header("Location: ../views/pages/admin/kelolaUser.php?message=error");
-            exit();
-        }
-    }
-
-    // Update User
-    if (isset($_POST['action']) && $_POST['action'] === 'updateuser') {
-        $username = $_POST['username'];
-        $role = $_POST['role'];
-        $password = $_POST['password'];
-    
-        // Jika password kosong, tidak perlu update password
-        if (!empty($password)) {
-            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-            $updateData = ['username' => $username, 'password' => $passwordHash, 'role' => $role];
-        } else {
-            $updateData = ['username' => $username, 'role' => $role];
-        }
-    
-        $model = new setAdminModel($conn);
-        if ($model->updateUser($conn, $updateData)) {
-            header("Location: ../views/pages/admin/kelolaUser.php?message=success");
-            exit();
-        } else {
-            header("Location: ../views/pages/admin/kelolaUser.php?message=error");
-            exit();
-        }
-    }
-    
-    //delete user
-    if (isset($_POST['action']) && $_POST['action'] === 'deleteuser') {
-        $username = $_POST['username'];
-        $model = new setAdminModel($conn);
-        if ($model->deleteUser($conn, $username)) {
-            header("Location: ../views/pages/admin/kelolaUser.php?message=success");
-            exit();
-        } else {
-            header("Location: ../views/pages/admin/kelolaUser.php?message=error");
-            exit();
-        }
-    }
-    
 
     // Fungsi untuk update data mahasiswa
     if (isset($_POST['action']) && $_POST['action'] === 'update') {

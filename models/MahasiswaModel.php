@@ -44,7 +44,8 @@ class MahasiswaModel
                 jt.jenis_tanggungan, 
                 jt.keterangan, 
                 t.status,
-                t.id_tanggungan
+                t.id_tanggungan,
+                t.berkas
             FROM 
                 Tanggungan t
             INNER JOIN 

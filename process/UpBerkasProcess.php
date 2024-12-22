@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $allowed_types = array("jpg", "jpeg", "pdf");
         if (!in_array($fileType, $allowed_types)) {
             // Redirect with error message
-            header("Location: ../views/pages/mahasiswa/uploadBerkas.php?message=upload_error");
+            header("Location: ../views/pages/mahasiswa/cekTanggungan.php?message=upload_error");
             exit;
         } else {
             // Direktori penyimpanan
@@ -39,11 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Eksekusi query
                 if (sqlsrv_execute($stmt)) {
                     // Redirect with success message
-                    header("Location: ../views/pages/mahasiswa/uploadBerkas.php?message=upload_success");
+                    header("Location: ../views/pages/mahasiswa/cekTanggungan.php?message=upload_success");
                     exit;
                 } else {
                     // Query execution failed
-                    header("Location: ../views/pages/mahasiswa/uploadBerkas.php?message=upload_error");
+                    header("Location: ../views/pages/mahasiswa/cekTanggungan.php?message=upload_error");
                     exit;
                 }
 
@@ -54,13 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 sqlsrv_close($conn);
             } else {
                 // File move failed
-                header("Location: ../views/pages/mahasiswa/uploadBerkas.php?message=upload_error");
+                header("Location: ../views/pages/mahasiswa/cekTanggungan.php?message=upload_error");
                 exit;
             }
         }
     } else {
         // No file uploaded
-        header("Location: ../views/pages/mahasiswa/uploadBerkas.php?message=upload_error");
+        header("Location: ../views/pages/mahasiswa/cekTanggungan.php?message=upload_error");
         exit;
     }
 }

@@ -56,7 +56,7 @@
                                                 <i class="fa fa-exclamation-circle"></i>
                                             </div>
                                             <div class="notif-content">
-                                                <span class="block">Selesaikan tanggungan Anda segera.</span>
+                                                <span class="block" style="text-align: center;">Selesaikan tanggungan Anda segera.</span>
                                             </div>
                                         </a>
                                     </div>

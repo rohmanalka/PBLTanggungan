@@ -161,9 +161,7 @@ include '../../../models/setAdminModel.php';
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <!-- Container untuk menata kolom untuk Mahasiswa -->
                               <div class="row">
-                                <!-- Kolom Kanan - Form Mahasiswa -->
                                 <div class="col-md-6">
                                   <h5 class="mb-3">Data Mahasiswa</h5>
                                   <form action="../../../process/CRUDProcess.php" method="POST" enctype="multipart/form-data">
@@ -189,22 +187,19 @@ include '../../../models/setAdminModel.php';
                                       <label for="angkatan" class="form-label">Angkatan</label>
                                       <input type="text" class="form-control" id="angkatan" name="angkatan" required />
                                     </div>
-
-                                    <!-- Dropdown untuk memilih id_user -->
                                     <div class="mb-3">
-                                      <label for="id_user" class="form-label">Pilih User</label>
-                                      <select class="form-control" id="id_user" name="id_user" required>
-                                        <option value="" disabled selected>Pilih User yang sesuai</option>
-                                        <?php foreach ($dataUser as $user) : ?>
-                                          <option value="<?= htmlspecialchars($user['id_user']) ?>"><?= htmlspecialchars($user['username']) ?> (<?= htmlspecialchars($user['role']) ?>)</option>
-                                        <?php endforeach; ?>
-                                      </select>
+                                      <label for="password" class="form-label">Password</label>
+                                      <input type="password" class="form-control" id="password" name="password" required />
                                     </div>
-
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                   </form>
                                 </div>
-                              <?php endforeach; ?>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
