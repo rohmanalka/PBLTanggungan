@@ -49,6 +49,9 @@ if (isset($_GET['error'])) {
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
+                <div class="mt-3">
+                    <a href="process/ForgotPassProcess.php" class="text-decoration-none">Lupa Password?</a>
+                </div>
             </form>
         </div>
         <div class="toggle-container">
